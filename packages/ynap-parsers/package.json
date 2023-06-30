@@ -6,6 +6,9 @@
   "author": "Leo Bernard <admin+github@leolabs.org>",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "dependencies": {
     "date-fns": "2.30.0",
     "iban": "^0.0.14",

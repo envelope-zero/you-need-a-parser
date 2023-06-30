@@ -7,6 +7,9 @@
     "name": "Leo Bernard",
     "url": "https://leolabs.org"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "bin": "index.js",
   "main": "index.js",
   "scripts": {
