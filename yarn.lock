@@ -3651,15 +3651,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.3.2.tgz#fa6a90f2600e052a03c18b8cb3fd83dd4e599898"
   integrity sha512-vOBLVQeCQfIcF/2Y7eKFTqrMnizK5lRNQ7ykML/5RuwVXVWxYkgwS7xbt4B6fKCUPgbSL5FSsjHQpaGQP/dQmw==
 
-"@types/node@18.16.15":
-  version "18.16.15"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.16.15.tgz#cdc55df400109c2c1a80c98fc9cec4bd3f1097e2"
-  integrity sha512-fv9H0101Lom0m76x5UekmudO0Vu611ElbTCLOeSbyX5WM6sme3gJ10PHP83pA1/eXbZpnDoTkeY40jykH38ptQ==
-
-"@types/node@18.16.16":
-  version "18.16.16"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.16.16.tgz#3b64862856c7874ccf7439e6bab872d245c86d8e"
-  integrity sha512-NpaM49IGQQAUlBhHMF82QH80J08os4ZmyF9MkpCzWAGuOHqE4gTEbhzd7L3l5LmWuZ6E0OiC1FweQ4tsiW35+g==
+"@types/node@18.16.19":
+  version "18.16.19"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.16.19.tgz#cb03fca8910fdeb7595b755126a8a78144714eea"
+  integrity sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==
 
 "@types/node@^8.5.7":
   version "8.10.66"
