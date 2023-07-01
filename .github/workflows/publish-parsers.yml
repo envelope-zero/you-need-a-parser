@@ -1,9 +1,14 @@
-name: Publish package to GitHub Packages
+name: Publish ynap-parsers
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - packages/ynap-parsers
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -16,19 +21,17 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
+          cache: yarn
+          always-auth: true
+          cache-dependency-path: yarn.lock
 
       - run: yarn
 
-      - name: publish bank2-ynab-converter
-        run: |
-          cd packages/ynap-bank2ynab-converter
-          yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: publish parsers
         run: |
-          cd packages/ynap-parsers
+          cd packages/ynap-bank2ynab-converter
+          yarn build
+          cd ../ynap-parsers
           yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

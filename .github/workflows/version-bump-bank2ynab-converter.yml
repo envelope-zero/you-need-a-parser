@@ -1,0 +1,46 @@
+name: "Check version bump for bank2ynab-converter"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - packages/ynap-bank2ynab-converter/**
+
+jobs:
+  version-bump:
+    permissions:
+      contents: read
+      packages: read
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+
+      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+        with:
+          node-version: '18.x'
+          registry-url: 'https://npm.pkg.github.com'
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Get the latest published version from the registry
+        run: echo version=$(npm view @envelope-zero/ynap-bank2ynab-converter --json | jq -r .version) >> $GITHUB_OUTPUT
+        id: published
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: echo version=$(cat packages/ynap-bank2ynab-converter/package.json | jq -r .version) >> $GITHUB_OUTPUT
+        id: new
+
+      - uses: madhead/semver-utils@5532a76b34d90e0ea245292630e4d3af3d7fe75e # v3.1.0
+        id: comparison
+        with:
+          version: ${{ steps.new.outputs.version }}
+          compare-to: ${{ steps.published.outputs.version }}
+
+      - name: Verify that version is bumped
+        run: |
+          if [[ ">" != "${{ steps.comparison.outputs.comparison-result }}" ]]; then
+            echo "::error::The package version needs to be bumped when making changes in the module" && exit 1
+          fi

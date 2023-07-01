@@ -20,11 +20,15 @@ jobs:
         uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Install, Build, and Test
         run: |
           yarn install
 
-          cd packages/ynap-parsers
+          cd packages/ynap-bank2ynab-converter
+          yarn build
+
+          cd ../ynap-parsers
           yarn build
           yarn test --coverage
         env:

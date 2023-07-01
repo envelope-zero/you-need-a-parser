@@ -1,0 +1,15 @@
+name: "Skip version bump check"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - packages/ynap-bank2ynab-converter
+      - packages/ynap-parsers
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "No module changed, skipping check"

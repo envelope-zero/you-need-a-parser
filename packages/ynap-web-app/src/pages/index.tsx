@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import '../styles/index.css';
-import { parseFile, parsers, countries } from 'ynap-parsers/src';
+import { parseFile, parsers, countries } from '@envelope-zero/ynap-parsers';
 import MetaTags from '../components/meta-tags';
 import { GitHubBadge } from '../components/github-badge';
 
