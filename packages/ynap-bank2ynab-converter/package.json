@@ -1,5 +1,5 @@
 {
-  "name": "ynap-bank2ynab-converter",
+  "name": "@envelope-zero/ynap-bank2ynab-converter",
   "version": "1.14.1",
   "license": "MIT",
   "author": {
