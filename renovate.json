@@ -1,6 +1,21 @@
 {
-  "extends": ["config:base"],
   "includeForks": true,
+  "extends": [
+    "group:recommended",
+    "replacements:all",
+    "workarounds:all",
+    "helpers:pinGitHubActionDigests",
+    ":ignoreModulesAndTests"
+  ],
+  "dependencyDashboard": true,
+  "pre-commit": {
+    "enabled": true
+  },
+  "labels": ["renovate"],
+  "rangeStrategy": "pin",
+  "rebaseWhen": "behind-base-branch",
+  "semanticCommits": "enabled",
+  "platformAutomerge": true,
   "automerge": true,
   "major": {
     "automerge": false
