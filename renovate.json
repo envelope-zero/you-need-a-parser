@@ -8,16 +8,17 @@
     ":ignoreModulesAndTests"
   ],
   "dependencyDashboard": true,
-  "pre-commit": {
-    "enabled": true
-  },
   "labels": ["renovate"],
   "rangeStrategy": "pin",
   "rebaseWhen": "behind-base-branch",
   "semanticCommits": "enabled",
-  "platformAutomerge": true,
   "automerge": true,
+  "platformAutomerge": true,
   "major": {
     "automerge": false
-  }
+  },
+  "pre-commit": {
+    "enabled": true
+  },
+  "bumpVersion": "patch"
 }
