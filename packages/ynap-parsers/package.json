@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "date-fns": "2.30.0",
-    "iban": "^0.0.14",
-    "iconv-lite": "^0.6.0",
-    "jschardet": "^2.1.0",
-    "lodash": "^4.17.15",
-    "mdn-polyfills": "^5.18.0",
-    "mt940-js": "^0.6.0",
-    "papaparse": "^5.1.0",
-    "slugify": "^1.3.5",
+    "iban": "0.0.14",
+    "iconv-lite": "0.6.3",
+    "jschardet": "2.3.0",
+    "lodash": "4.17.21",
+    "mdn-polyfills": "5.20.0",
+    "mt940-js": "0.6.0",
+    "papaparse": "5.4.1",
+    "slugify": "1.6.6",
     "xlsx": "^0.18.0"
   },
   "devDependencies": {
