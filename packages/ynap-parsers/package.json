@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.15.4",
+  "version": "1.15.5",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
   "author": "Leo Bernard <admin+github@leolabs.org>",
@@ -16,7 +16,7 @@
     "jschardet": "3.0.0",
     "lodash": "4.17.21",
     "mdn-polyfills": "5.20.0",
-    "mt940-js": "0.6.0",
+    "mt940-js": "1.0.0",
     "papaparse": "5.4.1",
     "slugify": "1.6.6",
     "xlsx": "^0.18.0"
