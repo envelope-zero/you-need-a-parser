@@ -2,6 +2,7 @@
   "includeForks": true,
   "extends": [
     "group:recommended",
+    "group:monorepos",
     "replacements:all",
     "workarounds:all",
     "helpers:pinGitHubActionDigests",
