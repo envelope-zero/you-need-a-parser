@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - packages/ynap-bank2ynab-converter
+      - 'packages/ynap-bank2ynab-converter/**'
 
 jobs:
   publish:
