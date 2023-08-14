@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - packages/ynap-parsers
+      - 'packages/ynap-parsers/**'
 
 jobs:
   publish:
