@@ -5,8 +5,6 @@ coverage/
 index.spec.d.ts
 index.spec.js
 
-yarn-error.log
-
 /index.js
 /index.d.ts
 /util/

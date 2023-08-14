@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
-          cache: yarn
-          cache-dependency-path: yarn.lock
+          cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Get the latest published version from the registry
         run: echo version=$(npm view @envelope-zero/ynap-parsers --json | jq -r .version) >> $GITHUB_OUTPUT

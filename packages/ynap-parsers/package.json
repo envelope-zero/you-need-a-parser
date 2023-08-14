@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.15.8",
+  "version": "1.15.9",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
   "author": "Leo Bernard <admin+github@leolabs.org>",
@@ -19,7 +19,8 @@
     "mt940-js": "1.0.0",
     "papaparse": "5.4.1",
     "slugify": "1.6.6",
-    "xlsx": "^0.18.0"
+    "xlsx": "^0.18.0",
+    "buffer": "6.0.3"
   },
   "devDependencies": {
     "@types/iban": "0.0.32",
@@ -34,8 +35,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "yarn jest && tsc && cp -r ./lib/* . && rm -rf ./lib",
-    "fetch-bank2ynab": "ynap-bank2ynab-converter -b develop -o src/bank2ynab/banks.json",
-    "prepublishOnly": "yarn build"
+    "build": "npx jest && tsc && cp -r ./lib/* . && rm -rf ./lib",
+    "fetch-bank2ynab": "ynap-bank2ynab-converter -b develop -o src/bank2ynab/banks.json"
   }
 }

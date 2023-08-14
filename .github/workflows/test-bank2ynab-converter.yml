@@ -22,9 +22,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install and run
         run: |
-          yarn
+          npm install
           cd packages/ynap-bank2ynab-converter
-          yarn start
+          npm run start
         env:
           CI: true
 

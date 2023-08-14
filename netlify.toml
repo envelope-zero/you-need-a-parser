@@ -1,4 +1,0 @@
-[build]
-  base = "/packages/ynap-web-app/"
-  publish = "/packages/ynap-web-app/public/"
-  command = "yarn build"
