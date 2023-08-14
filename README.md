@@ -1,13 +1,8 @@
 # You Need A Parser
 
-[![codecov](https://codecov.io/gh/leolabs/you-need-a-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/leolabs/you-need-a-parser)
+:information_source: This repository is a fork of the [original project by leolabs](https://github.com/leolabs/you-need-a-parser). It is fully integrated into the [Envelope Zero transaction import](https://l.envelope-zero.org/import-transactions).
 
-[Web App](https://ynap.leolabs.org) | [Supported Formats](https://ynap.leolabs.org/supported-formats/) | [Suggest a Format](https://github.com/leolabs/you-need-a-parser/issues/new?template=format_request.md)
-
-YNAP is a web app that converts CSV files from a variety of sources into a format
-that can easily be imported into [You Need A Budget](https://youneedabudget.com).
-Just drag the files you want to convert into this window. As the conversion happens
-entirely in JS, your files will never leave your browser.
+[Suggest a Format](https://github.com/envelope-zero/you-need-a-parser/issues/new?template=format_request.md)
 
 This repository consists of three packages:
 
@@ -19,7 +14,7 @@ to use it in your own projects.
 
 ### [ynap-web-app](https://github.com/leolabs/you-need-a-parser/tree/master/packages/ynap-web-app)
 
-This is the web frontend you see at [ynap.leolabs.org](https://ynap.leolabs.org).
+This is currently not in use.
 
 ### [ynap-bank2ynab-converter](https://github.com/leolabs/you-need-a-parser/tree/master/packages/ynap-bank2ynab-converter)
 
