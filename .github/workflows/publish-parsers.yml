@@ -21,17 +21,17 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
-          cache: yarn
+          cache: npm
           always-auth: true
-          cache-dependency-path: yarn.lock
+          cache-dependency-path: package-lock.json
 
-      - run: yarn
+      - run: npm install
 
       - name: publish parsers
         run: |
           cd packages/ynap-bank2ynab-converter
-          yarn build
+          npm run build
           cd ../ynap-parsers
-          yarn publish
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

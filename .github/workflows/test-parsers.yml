@@ -23,14 +23,14 @@ jobs:
 
       - name: Install, Build, and Test
         run: |
-          yarn install
+          npm install
 
           cd packages/ynap-bank2ynab-converter
-          yarn build
+          npm run build
 
           cd ../ynap-parsers
-          yarn build
-          yarn test --coverage
+          npm run build
+          npm run test --coverage
         env:
           CI: true
 
