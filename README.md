@@ -6,17 +6,17 @@
 
 This repository consists of three packages:
 
-### [ynap-parsers](https://github.com/leolabs/you-need-a-parser/tree/master/packages/ynap-parsers)
+### [ynap-parsers](packages/ynap-parsers)
 
 This package contains all parsers for different formats. If you want to implement a
 new parser, this is the way to go. This package is also available on NPM if you want
 to use it in your own projects.
 
-### [ynap-web-app](https://github.com/leolabs/you-need-a-parser/tree/master/packages/ynap-web-app)
+### [ynap-web-app](packages/ynap-web-app)
 
 This is currently not in use.
 
-### [ynap-bank2ynab-converter](https://github.com/leolabs/you-need-a-parser/tree/master/packages/ynap-bank2ynab-converter)
+### [ynap-bank2ynab-converter](packages/ynap-bank2ynab-converter/)
 
 This tool fetches the current configuration file from [bank2ynab](https://github.com/bank2ynab/bank2ynab)
 and converts it to a JSON file that can be read by ynap-parsers. This allows
