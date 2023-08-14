@@ -32,6 +32,7 @@ jobs:
           cd packages/ynap-bank2ynab-converter
           npm run build
           cd ../ynap-parsers
+          npm run build
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

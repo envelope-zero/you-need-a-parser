@@ -30,6 +30,7 @@ jobs:
       - name: publish bank2-ynab-converter
         run: |
           cd packages/ynap-bank2ynab-converter
+          npm run build
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
