@@ -1,11 +1,11 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.29",
+  "version": "1.15.30",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@types/node": "18.17.6",
-    "@types/jest": "29.5.3",
+    "@types/jest": "29.5.4",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "file-saver": "2.0.5",
