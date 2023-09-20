@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-bank2ynab-converter",
-  "version": "1.14.22",
+  "version": "1.14.23",
   "license": "MIT",
   "author": {
     "email": "admin+github@leolabs.org",
@@ -17,7 +17,7 @@
     "build": "tsc && cp -r ./lib/* . && rm -rf ./lib"
   },
   "devDependencies": {
-    "@types/node": "18.17.17",
+    "@types/node": "18.17.18",
     "@types/node-fetch": "2.6.5",
     "ts-node": "10.9.1"
   },
