@@ -1,6 +1,6 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.85",
+  "version": "1.15.86",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -40,7 +40,7 @@
   ],
   "devDependencies": {
     "@types/file-saver": "2.0.6",
-    "@types/node-fetch": "2.6.7",
+    "@types/node-fetch": "2.6.8",
     "@types/react-helmet": "6.1.8",
     "@types/react-helmet-async": "1.0.3",
     "@types/react-toastify": "4.1.0",
