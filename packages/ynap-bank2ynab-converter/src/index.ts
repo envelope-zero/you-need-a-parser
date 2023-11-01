@@ -2,9 +2,11 @@
 
 import fetch from 'node-fetch';
 import fs from 'fs';
-import commander from 'commander';
+import { Command } from 'commander';
 
-commander
+const program = new Command();
+
+program
   .description('Fetch and parse the current bank2ynab config file to JSON')
   .option(
     '-e, --exclude <items>',
@@ -21,15 +23,15 @@ commander
 
 import { ParserConfig } from './parserconfig';
 
-const CONFIG_URL = `https://raw.githubusercontent.com/bank2ynab/bank2ynab/${commander.branch}/bank2ynab.conf`;
+const CONFIG_URL = `https://raw.githubusercontent.com/bank2ynab/bank2ynab/${program.opts["branch"]}/bank2ynab.conf`;
 
-const CONFIG_LINK = `https://github.com/bank2ynab/bank2ynab/blob/${commander.branch}/bank2ynab.conf`;
+const CONFIG_LINK = `https://github.com/bank2ynab/bank2ynab/blob/${program.opts["branch"]}/bank2ynab.conf`;
 
 const SECTION = new RegExp(/^\s*\[([^\]]+)]/);
 const KEY = new RegExp(/\s*(.*?)\s*[=:]\s*(.*)/);
 const COMMENT = new RegExp(/^\s*[;#]/);
 
-const blacklist = commander.exclude || [];
+const blacklist = program.opts["exclude"] || [];
 
 interface Sections {
   [k: string]: ConfigFields;
@@ -136,8 +138,8 @@ const script = async () => {
     'configs.',
   );
 
-  fs.writeFileSync(commander.output, JSON.stringify(filteredConfig, null, 2));
-  console.log('Saved configs to', commander.output);
+  fs.writeFileSync(program.opts["output"], JSON.stringify(filteredConfig, null, 2));
+  console.log('Saved configs to', program.opts["output"].output);
 };
 
 script();
