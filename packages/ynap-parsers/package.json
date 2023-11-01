@@ -1,9 +1,9 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.15.22",
+  "version": "1.15.23",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
-  "author": "Leo Bernard <admin+github@leolabs.org>",
+  "author": "Envelope Zero Team <team@envelope-zero.org> (https://envelope-zero.org)",
   "license": "MIT",
   "private": false,
   "publishConfig": {
