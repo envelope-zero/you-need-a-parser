@@ -1,11 +1,11 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.88",
+  "version": "1.15.89",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@types/node": "20.8.10",
-    "@types/jest": "29.5.4",
+    "@types/jest": "29.5.7",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "file-saver": "2.0.5",
@@ -48,7 +48,7 @@
     "babel-plugin-styled-components": "2.1.4",
     "date-fns": "2.30.0",
     "encoding": "0.1.13",
-    "jest": "29.6.2",
+    "jest": "29.7.0",
     "node-fetch": "2.7.0",
     "tslint": "5.20.1"
   }
