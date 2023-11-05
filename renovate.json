@@ -1,4 +1,5 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "includeForks": true,
   "extends": [
     "group:recommended",
@@ -22,6 +23,14 @@
     "enabled": true
   },
   "bumpVersion": "patch",
+  "packageRules": [
+    {
+      "description": "Use node-fetch major 2: https://github.com/node-fetch/node-fetch/blob/main/docs/v3-UPGRADE-GUIDE.md#converted-to-es-module",
+      "matchPackageNames": ["node-fetch"],
+      "matchManagers": ["npm"],
+      "allowedVersions": "< 3.0.0"
+    }
+  ],
   "hostRules": [
     {
       "description": "See https://docs.renovatebot.com/getting-started/private-packages/#automatically-authenticate-for-npm-package-stored-in-private-github-npm-repository",

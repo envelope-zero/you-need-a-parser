@@ -1,5 +1,5 @@
 import { matchFile } from '.';
-import glob from 'fast-glob';
+import { glob } from 'glob'
 import fs from 'fs';
 import path from 'path';
 
