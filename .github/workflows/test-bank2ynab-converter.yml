@@ -28,6 +28,12 @@ jobs:
       - name: set npm auth
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
 
+      - uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
+        with:
+          path: |
+            **/node_modules
+          key: npm-${{ hashFiles('package-lock.json') }}
+
       - name: Install and run
         run: |
           npm install
