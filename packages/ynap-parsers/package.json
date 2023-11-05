@@ -23,7 +23,7 @@
     "xlsx": "0.18.0"
   },
   "devDependencies": {
-    "@envelope-zero/ynap-bank2ynab-converter": "1.14.9",
+    "@envelope-zero/ynap-bank2ynab-converter": "1.14.37",
     "@types/iban": "0.0.34",
     "@types/jest": "29.5.7",
     "@types/lodash": "4.14.200",
