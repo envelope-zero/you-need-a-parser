@@ -20,7 +20,7 @@
     "mt940-js": "1.0.0",
     "papaparse": "5.4.1",
     "slugify": "1.6.6",
-    "xlsx": "0.18.0"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
   },
   "devDependencies": {
     "@envelope-zero/ynap-bank2ynab-converter": "1.14.37",

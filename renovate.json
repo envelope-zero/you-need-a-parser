@@ -29,6 +29,24 @@
       "matchPackageNames": ["node-fetch"],
       "matchManagers": ["npm"],
       "allowedVersions": "< 3.0.0"
+    },
+    {
+      "description": "Remove leading v for SheetJS",
+      "matchDatasources": ["gitea-tags"],
+      "matchPackageNames": ["xlsx"],
+      "extractVersion": "^v(?<version>.*)$"
+    }
+  ],
+  "customManagers": [
+    {
+      "description": "SheetJS",
+      "matchStrings": [
+        "https://cdn.sheetjs.com/xlsx-(?<currentValue>.*)/xlsx-(.*)\\.tgz"
+      ],
+      "datasourceTemplate": "gitea-tags",
+      "registryUrlTemplate": "https://git.sheetjs.com",
+      "depNameTemplate": "sheetjs/sheetjs",
+      "fileMatch": ["packages/ynap-parsers/package.json"]
     }
   ],
   "hostRules": [
