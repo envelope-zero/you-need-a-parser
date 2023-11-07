@@ -26,6 +26,12 @@ ynap-parsers to support most of the banks supported by bank2ynab.
 
 If you want to improve YNAP, feel free to submit an issue or open a pull request.
 
+Please set up pre-commit locally and run it before opening a PR:
+
+```sh
+pre-commit install
+```
+
 ## License
 
 This repo and all included packages are licensed under the
