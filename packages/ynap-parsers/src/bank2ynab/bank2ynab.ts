@@ -12,12 +12,23 @@ export const parseNumber = (input?: string) => {
     return undefined;
   }
 
+  // Return 0 for an empty string since this is an empty field
+  if (!input.trim()) {
+    return 0;
+  }
+
+  // Remove all superfluous characters
+  const cleaned = input.replace(/[^\d.,-]/g, '');
+  if (cleaned == '') {
+    return NaN;
+  }
+
   try {
-    if (input.includes(',')) {
-      return Number(input.replace(',', '.'));
+    if (cleaned.includes(',')) {
+      return Number(cleaned.replace(',', '.'));
     }
 
-    return Number(input);
+    return Number(cleaned);
   } catch (e) {
     return undefined;
   }
@@ -60,16 +71,19 @@ export const calculateOutflow = (inflow?: number, outflow?: number) => {
 };
 
 export const generateParser = (config: ParserConfig) => {
-  const columns = config.inputColumns.reduce((acc, cur, index) => {
-    if (cur === 'skip') {
-      return acc;
-    }
+  const columns = config.inputColumns.reduce(
+    (acc, cur, index) => {
+      if (cur === 'skip') {
+        return acc;
+      }
 
-    return {
-      ...acc,
-      [cur]: index,
-    };
-  }, {} as { [k in keyof (YnabRow & { CDFlag?: string })]: number });
+      return {
+        ...acc,
+        [cur]: index,
+      };
+    },
+    {} as { [k in keyof (YnabRow & { CDFlag?: string })]: number },
+  );
 
   const hasCol = (name: keyof typeof columns) => Object.keys(columns).includes(name);
 
@@ -84,11 +98,17 @@ export const generateParser = (config: ParserConfig) => {
     }
 
     // Check that enough columns exist
-    if (data.length === 0 || data[0].length < config.inputColumns.length) {
+    // Skip header rows in length check
+    const headerRow = config.headerRows > 0 ? config.headerRows - 1 : 0;
+    if (
+      data.length <= headerRow ||
+      data[headerRow].length < config.inputColumns.length
+    ) {
       return false;
     }
 
-    const row = data.filter((d) => d.length > 1)[config.headerRows];
+    // Get all rows after the header row, filter empty lines, then use the first row of that
+    const row = data.slice(config.headerRows).filter((d) => d.length > 1)[0];
 
     // Check that the date column is set correctly
     try {
@@ -155,7 +175,7 @@ export const generateParser = (config: ParserConfig) => {
                     hasCol('Outflow') ? parseNumber(d[columns.Outflow]) : undefined,
                   ),
                 }),
-          } as YnabRow),
+          }) as YnabRow,
       );
 
     return [
@@ -176,7 +196,7 @@ export const generateParser = (config: ParserConfig) => {
   } as ParserModule;
 };
 
-const blacklist = ['de N26', 'de ING-DiBa', 'ie N26'];
+const ignorelist = ['de N26', 'de ING-DiBa', 'ie N26'];
 export const bank2ynab = banks
-  .filter((b) => !blacklist.includes(`${b.country} ${b.name}`))
+  .filter((b) => !ignorelist.includes(`${b.country} ${b.name}`))
   .map((bank) => generateParser(bank as ParserConfig));

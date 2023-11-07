@@ -1,0 +1,6 @@
+﻿"Konto";"Girokonto-Abc DE12345678901234567890"
+""
+"Kontostand vom 07.11.2023:";"481,71 EUR"
+""
+"Buchungsdatum";"Wertstellung";"Status";"Zahlungspflichtige*r";"Zahlungsempfänger*in";"Verwendungszweck";"Umsatztyp";"Betrag";"Gläubiger-ID";"Mandatsreferenz";"Kundenreferenz"
+"06.11.23";"06.11.23";"Gebucht";"ISSUER";"exampleIssuer";"2023-11-03 Debitk.95 VISA Debit";"Ausgang";"-82,80 €";"";"";"123456789123456"

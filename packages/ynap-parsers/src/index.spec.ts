@@ -1,5 +1,5 @@
 import { matchFile } from '.';
-import { glob } from 'glob'
+import { glob } from 'glob';
 import fs from 'fs';
 import path from 'path';
 
@@ -15,8 +15,11 @@ describe('Main Module', () => {
       }
 
       if (matches.length > 1) {
-        console.warn('Multiple parsers for', fileName);
-        console.warn(matches.map((m) => m.name));
+        console.warn(
+          'Multiple parsers for',
+          fileName + ':',
+          matches.map((m) => m),
+        );
       }
       expect(matches.length).toBeGreaterThanOrEqual(1);
     }
