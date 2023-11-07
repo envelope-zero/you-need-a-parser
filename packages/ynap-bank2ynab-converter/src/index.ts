@@ -23,15 +23,19 @@ program
 
 import { ParserConfig } from './parserconfig';
 
-const CONFIG_URL = `https://raw.githubusercontent.com/bank2ynab/bank2ynab/${program.opts()["branch"]}/bank2ynab.conf`;
+const CONFIG_URL = `https://raw.githubusercontent.com/bank2ynab/bank2ynab/${
+  program.opts()['branch']
+}/bank2ynab.conf`;
 
-const CONFIG_LINK = `https://github.com/bank2ynab/bank2ynab/blob/${program.opts()["branch"]}/bank2ynab.conf`;
+const CONFIG_LINK = `https://github.com/bank2ynab/bank2ynab/blob/${
+  program.opts()['branch']
+}/bank2ynab.conf`;
 
 const SECTION = new RegExp(/^\s*\[([^\]]+)]/);
 const KEY = new RegExp(/\s*(.*?)\s*[=:]\s*(.*)/);
 const COMMENT = new RegExp(/^\s*[;#]/);
 
-const blacklist = program.opts()["exclude"] || [];
+const ignorelist = program.opts()['exclude'] || [];
 
 interface Sections {
   [k: string]: ConfigFields;
@@ -96,14 +100,14 @@ const script = async () => {
 
   const config = parseConfig(configData);
 
-  console.log('Excluding', blacklist.length, 'items from blacklist.');
+  console.log('Excluding', ignorelist.length, 'items from ignorelist.');
 
   const filteredConfig: ParserConfig[] = Object.keys(config)
     .map((c) => ({ ...config[c], Name: c }))
     .filter(
       (c) =>
         c.Name !== 'DEFAULT' &&
-        !blacklist.includes(c.Name) &&
+        !ignorelist.includes(c.Name) &&
         !c.Plugin &&
         c['Source Filename Pattern'] !== 'unknown!' &&
         c['Input Columns'],
@@ -127,7 +131,7 @@ const script = async () => {
             .map((s) => s.trim()),
           headerRows: Number(c['Header Rows'] || '1'),
           footerRows: Number(c['Footer Rows'] || '0'),
-        } as ParserConfig),
+        }) as ParserConfig,
     );
 
   console.log(
@@ -138,8 +142,11 @@ const script = async () => {
     'configs.',
   );
 
-  fs.writeFileSync(program.opts()["output"], JSON.stringify(filteredConfig, null, 2));
-  console.log('Saved configs to', program.opts()["output"].output);
+  fs.writeFileSync(
+    program.opts()['output'],
+    JSON.stringify(filteredConfig, null, 2),
+  );
+  console.log('Saved configs to', program.opts()['output'].output);
 };
 
 script();
