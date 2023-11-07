@@ -33,8 +33,9 @@
     {
       "description": "Remove leading v for SheetJS",
       "matchDatasources": ["gitea-tags"],
-      "matchPackageNames": ["xlsx"],
-      "extractVersion": "^v(?<version>.*)$"
+      "matchPackageNames": ["sheetjs/sheetjs"],
+      "extractVersion": "^v(?<version>.*)$",
+      "allowedVersions": "!/^v0.87$/"
     }
   ],
   "customManagers": [
