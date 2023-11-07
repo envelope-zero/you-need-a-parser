@@ -1,4 +1,12 @@
-import { calculateInflow, calculateOutflow, parseNumber } from './bank2ynab';
+import {
+  calculateInflow,
+  calculateOutflow,
+  parseNumber,
+  bank2ynab,
+} from './bank2ynab';
+import { glob } from 'glob';
+import fs from 'fs';
+import path from 'path';
 
 describe('bank2ynab Parser Module', () => {
   describe('Number Parser', () => {

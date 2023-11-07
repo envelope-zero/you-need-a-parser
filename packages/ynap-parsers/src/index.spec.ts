@@ -1,4 +1,4 @@
-import { matchFile } from '.';
+import { matchFile, parseFile } from '.';
 import { glob } from 'glob';
 import fs from 'fs';
 import path from 'path';
@@ -22,6 +22,14 @@ describe('Main Module', () => {
         );
       }
       expect(matches.length).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it('should parse all test files', async () => {
+    const files = await glob('**/test-data/*', { absolute: true, cwd: __dirname });
+    for (const fileName of files) {
+      const file = new File([fs.readFileSync(fileName)], path.basename(fileName));
+      const parsed = await parseFile(file);
     }
   });
 });
