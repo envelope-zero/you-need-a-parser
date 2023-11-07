@@ -35,7 +35,7 @@
       "matchDatasources": ["gitea-tags"],
       "matchPackageNames": ["sheetjs/sheetjs"],
       "extractVersion": "^v(?<version>.*)$",
-      "allowedVersions": "!/^v0.87$/"
+      "allowedVersions": "!/^0.87$/"
     }
   ],
   "customManagers": [
