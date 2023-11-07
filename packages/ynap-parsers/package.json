@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.15.24",
+  "version": "1.15.25",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
   "author": "Envelope Zero Team <team@envelope-zero.org> (https://envelope-zero.org)",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@envelope-zero/ynap-bank2ynab-converter": "1.14.37",
-    "@types/iban": "0.0.34",
+    "@types/iban": "0.0.35",
     "@types/jest": "29.5.7",
     "@types/lodash": "4.14.200",
     "@types/papaparse": "5.3.10",
