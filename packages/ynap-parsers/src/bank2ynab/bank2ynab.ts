@@ -47,7 +47,11 @@ export const calculateInflow = (inflow?: number, outflow?: number) => {
     return outflow < 0 ? -outflow : undefined;
   }
 
-  if (typeof inflow !== 'undefined' && typeof outflow !== 'undefined') {
+  if (
+    typeof inflow !== 'undefined' &&
+    typeof outflow !== 'undefined' &&
+    !(outflow === 0 || inflow === 0)
+  ) {
     throw new Error("Inflow and outflow can't be set simultaneously");
   }
 };
@@ -65,7 +69,11 @@ export const calculateOutflow = (inflow?: number, outflow?: number) => {
     return inflow < 0 ? -inflow : undefined;
   }
 
-  if (typeof outflow !== 'undefined' && typeof inflow !== 'undefined') {
+  if (
+    typeof outflow !== 'undefined' &&
+    typeof inflow !== 'undefined' &&
+    !(outflow === 0 || inflow === 0)
+  ) {
     throw new Error("Inflow and outflow can't be set simultaneously");
   }
 };
