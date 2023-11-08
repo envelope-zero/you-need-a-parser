@@ -29,8 +29,8 @@ export const kontistParser: ParserFunction = async (file: File) => {
   return [
     {
       data: (data as KontistRow[])
-        .filter(r => r.booking_date && r.amount)
-        .map(r => ({
+        .filter((r) => r.booking_date && r.amount)
+        .map((r) => ({
           Date: generateYnabDate(r.booking_date),
           Payee: r.name,
           Memo: r.purpose,
@@ -60,7 +60,7 @@ export const kontistMatcher: MatcherFunction = async (file: File) => {
   }
 
   const keys = Object.keys(data[0]);
-  const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+  const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
   if (missingKeys.length === 0) {
     return true;

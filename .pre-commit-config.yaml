@@ -18,9 +18,13 @@ repos:
     rev: v4.5.0
     hooks:
       - id: end-of-file-fixer
+        # Removing one of the two newlines at the end of this file breaks parsing.
+        exclude: packages/ynap-parsers/src/de/1822direkt/test-data/umsaetze-12345678-25.03.2020_11_45.csv
       - id: trailing-whitespace
 
-  - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 37.51.0
+  # Explicitly not using the renovate upstream hook because for some reason installing it is
+  # excruciatingly slow (> 10 minutes in some cases)
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.27.1
     hooks:
-      - id: renovate-config-validator
+      - id: check-renovate

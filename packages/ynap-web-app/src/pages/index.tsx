@@ -41,7 +41,7 @@ const Container = styled.div<{ uploadHover?: boolean }>`
     margin-bottom: 4rem;
   }
 
-  ${p =>
+  ${(p) =>
     p.uploadHover &&
     css`
       background-color: hsl(218, 40, 90);
@@ -139,7 +139,7 @@ const App: React.FC<{ version: string; commit: string; timestamp: string }> = ({
               parsedFile.accountName,
               'ynap',
             ]
-              .filter(e => e)
+              .filter((e) => e)
               .join('-');
             saveAs(blob, `${fileName}.csv`);
             resultCount++;
@@ -218,7 +218,7 @@ const App: React.FC<{ version: string; commit: string; timestamp: string }> = ({
           YNAP supports {parsers.length} different formats for banks of{' '}
           {countries.length} countries, including{' '}
           {parsers
-            .map(p => (
+            .map((p) => (
               <>
                 <a key={p.link} href={p.link} target="_blank">
                   {p.name}

@@ -32,13 +32,13 @@ export const ingAustriaParser: ParserFunction = async (file: File) => {
   return [
     {
       data: (data as IngAustriaRow[])
-        .filter(r => r.Valutadatum && (r.Soll || r.Haben))
-        .map(r => ({
+        .filter((r) => r.Valutadatum && (r.Soll || r.Haben))
+        .map((r) => ({
           Date: generateYnabDate(r.Valutadatum),
           Payee: r.Text,
           Memo: undefined,
-          Outflow: r.Soll != "0,00" ? parseNumber(r.Soll).toFixed(2) : undefined,
-          Inflow: r.Haben != "0,00" ? parseNumber(r.Haben).toFixed(2) : undefined,
+          Outflow: r.Soll != '0,00' ? parseNumber(r.Soll).toFixed(2) : undefined,
+          Inflow: r.Haben != '0,00' ? parseNumber(r.Haben).toFixed(2) : undefined,
         })),
     },
   ];
@@ -71,7 +71,7 @@ export const ingAustriaMatcher: MatcherFunction = async (file: File) => {
     }
 
     const keys = Object.keys(data[0]);
-    const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+    const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
     if (missingKeys.length === 0) {
       return true;

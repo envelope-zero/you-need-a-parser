@@ -51,7 +51,7 @@ export const outbankParser: ParserFunction = async (file: File) => {
   const banks = (await import('./blz.json')).default;
 
   const groupedData = (data as OutbankRow[])
-    .filter(r => r.Date && r.Amount)
+    .filter((r) => r.Date && r.Amount)
     .reduce(
       (acc, cur) => {
         const data = {
@@ -87,7 +87,7 @@ export const outbankParser: ParserFunction = async (file: File) => {
       ? slugify(banks[key.substr(4, 8)]).toLowerCase()
       : 'unknown';
 
-  return Object.keys(groupedData).map(key => ({
+  return Object.keys(groupedData).map((key) => ({
     accountName: iban.isValid(key) ? getBankSlug(key) : key,
     data: groupedData[key],
   }));
@@ -115,7 +115,7 @@ export const outbankMatcher: MatcherFunction = async (file: File) => {
   }
 
   const keys = Object.keys(data[0]);
-  const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+  const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
   if (missingKeys.length === 0) {
     return true;
@@ -129,8 +129,7 @@ export const outbank: ParserModule = {
   country: 'de',
   fileExtension: 'csv',
   filenamePattern: /^Outbank_Export_(\d{8})\.csv/,
-  link:
-    'https://help.outbankapp.com/en/kb/articles/wie-kann-ich-ums-tze-als-csv-datei-exportieren',
+  link: 'https://help.outbankapp.com/en/kb/articles/wie-kann-ich-ums-tze-als-csv-datei-exportieren',
   match: outbankMatcher,
   parse: outbankParser,
 };

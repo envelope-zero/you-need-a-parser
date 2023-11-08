@@ -1,4 +1,4 @@
-name: "Skip version bump check"
+name: 'Skip version bump check'
 
 on:
   pull_request:

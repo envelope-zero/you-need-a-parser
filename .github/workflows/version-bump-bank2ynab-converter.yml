@@ -1,4 +1,4 @@
-name: "Check version bump for bank2ynab-converter"
+name: 'Check version bump for bank2ynab-converter'
 
 on:
   pull_request:

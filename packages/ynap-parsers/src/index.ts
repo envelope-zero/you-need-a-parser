@@ -94,7 +94,7 @@ export const parsers: ParserModule[] = [
 ];
 
 export const countries = uniq(
-  parsers.filter(p => p.country.length === 2).map(p => p.country),
+  parsers.filter((p) => p.country.length === 2).map((p) => p.country),
 );
 
 export const matchFile = async (file: File): Promise<ParserModule[]> => {
@@ -102,20 +102,20 @@ export const matchFile = async (file: File): Promise<ParserModule[]> => {
     throw new Error('This file has already been converted by YNAP.');
   }
 
-  const filenameMatches = parsers.filter(p => file.name.match(p.filenamePattern));
+  const filenameMatches = parsers.filter((p) => file.name.match(p.filenamePattern));
 
   // If parser modules match the file by its filename, try those first
   if (filenameMatches.length > 0) {
     const parsers = (
       await Promise.all(
-        filenameMatches.map(async p => ({
+        filenameMatches.map(async (p) => ({
           parser: p,
           matched: await p.match(file),
         })),
       )
     )
-      .filter(r => r.matched)
-      .map(p => p.parser);
+      .filter((r) => r.matched)
+      .map((p) => p.parser);
 
     if (parsers.length > 0) {
       return parsers;
@@ -127,18 +127,18 @@ export const matchFile = async (file: File): Promise<ParserModule[]> => {
     await Promise.all(
       parsers
         .filter(
-          p =>
+          (p) =>
             p.fileExtension.toLowerCase() ===
             last(file.name.split('.')).toLowerCase(),
         )
-        .map(async p => ({
+        .map(async (p) => ({
           parser: p,
           matched: await p.match(file),
         })),
     )
   )
-    .filter(r => r.matched)
-    .map(p => p.parser);
+    .filter((r) => r.matched)
+    .map((p) => p.parser);
 
   return results;
 };
@@ -154,7 +154,7 @@ export const parseFile = async (file: File, parserOverride?: ParserModule) => {
       'The file',
       file.name,
       'was matched by',
-      matches.map(m => m.name).join(', '),
+      matches.map((m) => m.name).join(', '),
     );
     parser = matches.length > 0 ? matches[0] : null;
   }
@@ -165,7 +165,7 @@ export const parseFile = async (file: File, parserOverride?: ParserModule) => {
 
   const ynabData = await parser.parse(file);
 
-  return ynabData.map(f => ({
+  return ynabData.map((f) => ({
     ...f,
     data: unparse(f.data),
     rawData: f.data,

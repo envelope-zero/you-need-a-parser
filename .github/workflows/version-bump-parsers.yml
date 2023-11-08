@@ -1,4 +1,4 @@
-name: "Check version bump for parsers"
+name: 'Check version bump for parsers'
 
 on:
   pull_request:

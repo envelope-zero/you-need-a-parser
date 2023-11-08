@@ -33,7 +33,7 @@ const SupportedFormats = () => (
         countries.length
       } countries, including ${parsers
         .slice(0, 4)
-        .map(p => p.name)
+        .map((p) => p.name)
         .join(', ')}, and more.`}
     />
 
@@ -44,13 +44,13 @@ const SupportedFormats = () => (
 
       <h2>Supported Formats</h2>
 
-      {['international', ...countries].map(c => (
+      {['international', ...countries].map((c) => (
         <Fragment key={c}>
           <h3>{countryNames[c] || c}</h3>
           <p>
             {parsers
-              .filter(p => p.country === c)
-              .map(p => (
+              .filter((p) => p.country === c)
+              .map((p) => (
                 <ParserPill key={p.link} href={p.link} target="_blank">
                   {p.name}
                 </ParserPill>

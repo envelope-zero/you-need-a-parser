@@ -25,8 +25,8 @@ export const revolutParser: ParserFunction = async (file: File) => {
     {
       data: (data as string[][])
         .slice(1)
-        .filter(r => r[0])
-        .map(r => ({
+        .filter((r) => r[0])
+        .map((r) => ({
           Date: generateYnabDate(r[COMPLETED_DATE]),
           Payee: r[REFERENCE].trim(),
           Category: r[CATEGORY].trim(),
@@ -39,7 +39,12 @@ export const revolutParser: ParserFunction = async (file: File) => {
 };
 
 export const revolutMatcher: MatcherFunction = async (file: File) => {
-  const requiredKeys: string[] = ['Completed Date', 'Reference', 'Exchange Rate', 'Category'];
+  const requiredKeys: string[] = [
+    'Completed Date',
+    'Reference',
+    'Exchange Rate',
+    'Category',
+  ];
 
   const { data } = await parseCsv(file, { preview: 1 });
 
@@ -47,8 +52,8 @@ export const revolutMatcher: MatcherFunction = async (file: File) => {
     return false;
   }
 
-  const csvColumnNames = data[0].map(r => r.trim());
-  return requiredKeys.every(key => csvColumnNames.includes(key));
+  const csvColumnNames = data[0].map((r) => r.trim());
+  return requiredKeys.every((key) => csvColumnNames.includes(key));
 };
 
 export const revolut: ParserModule = {

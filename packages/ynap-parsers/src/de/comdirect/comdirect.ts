@@ -24,7 +24,8 @@ export const generateYnabDate = (input: string) => {
 
 // Replace '.' with '' to remove German format thousands separator, then
 // replace ',' with '.' to convert from German decimal separator to TS-style '.'
-export const parseNumber = (input: string) => Number(input.replace('.', '').replace(',', '.'));
+export const parseNumber = (input: string) =>
+  Number(input.replace('.', '').replace(',', '.'));
 
 export const trimMetaData = (input: string) => {
   const beginning = input.indexOf('"Buchungstag"');
@@ -68,7 +69,7 @@ export const extractField = (
   // key so we can remove everything after that.
   const nextField = new RegExp(
     `(${Object.keys(postingTextFields)
-      .map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+      .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
       .join('|')})`,
     'i',
   );
@@ -86,8 +87,10 @@ export const comdirectParser: ParserFunction = async (file: File) => {
   return [
     {
       data: (data as ComdirectRow[])
-        .filter(r => r.Buchungstag && r.Buchungstag != "offen" && r['Umsatz in EUR'])
-        .map(r => ({
+        .filter(
+          (r) => r.Buchungstag && r.Buchungstag != 'offen' && r['Umsatz in EUR'],
+        )
+        .map((r) => ({
           Date: generateYnabDate(r.Buchungstag),
           Payee:
             extractField(r.Buchungstext, 'Empfänger') ||
@@ -134,7 +137,7 @@ export const comdirectMatcher: MatcherFunction = async (file: File) => {
     }
 
     const keys = Object.keys(data[0]);
-    const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+    const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
     if (missingKeys.length === 0) {
       return true;

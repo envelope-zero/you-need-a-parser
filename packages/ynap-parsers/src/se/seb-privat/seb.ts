@@ -37,9 +37,7 @@ export const sebPrivatParser: ParserFunction = async (file: File) => {
     rows.push({
       Category: undefined,
       Date: generateYnabDate(String(sheet[`B${rowNum}`].v)),
-      Memo: String(sheet[`D${rowNum}`].v)
-        .split('\r')[0]
-        .trim(),
+      Memo: String(sheet[`D${rowNum}`].v).split('\r')[0].trim(),
       Inflow: sheet[`E${rowNum}`].v > 0 ? sheet[`E${rowNum}`].v : undefined,
       Outflow: sheet[`E${rowNum}`].v < 0 ? -sheet[`E${rowNum}`].v : undefined,
     });

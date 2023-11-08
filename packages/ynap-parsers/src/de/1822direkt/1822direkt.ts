@@ -76,7 +76,7 @@ export const getMergedMemo = (r: Row) =>
     .filter(Boolean)
     // When the string is 35 characters long, it's likely to overflow into the next
     // field, so we don't add a space. Otherwise, we add a space for separation.
-    .map(s => (s.length >= 35 ? s : s + ' '))
+    .map((s) => (s.length >= 35 ? s : s + ' '))
     .join('')
     .trim();
 
@@ -88,8 +88,8 @@ export const _1822direktParser: ParserFunction = async (file: File) => {
     {
       accountName: String(data[0]?.Kontonummer),
       data: (data as Row[])
-        .filter(r => r.Buchungstag && r['Soll/Haben'])
-        .map(r => ({
+        .filter((r) => r.Buchungstag && r['Soll/Haben'])
+        .map((r) => ({
           Date: generateYnabDate(r.Buchungstag),
           Payee: r['Empfänger/Auftraggeber Name'],
           Memo: getMergedMemo(r),
@@ -136,7 +136,7 @@ export const _1822direktMatcher: MatcherFunction = async (file: File) => {
     }
 
     const keys = Object.keys(data[0]);
-    const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+    const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
     if (missingKeys.length === 0) {
       return true;

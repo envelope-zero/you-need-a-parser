@@ -19,16 +19,16 @@ export const aquaParser: ParserFunction = async (file: File) => {
 
   const rows = (data as string[][])
     .slice(1)
-    .filter(r => r.length >= 3)
-    .filter(r => r[0] !== 'Pending')
+    .filter((r) => r.length >= 3)
+    .filter((r) => r[0] !== 'Pending')
     .map(
-      cur =>
+      (cur) =>
         ({
           Date: generateYnabDate(cur[0]),
           Memo: cur[1].trim().replace(/\s\s+/g, ' '),
           Inflow: Number(cur[2]) < 0 ? (-Number(cur[2])).toFixed(2) : undefined,
           Outflow: Number(cur[2]) > 0 ? Number(cur[2]).toFixed(2) : undefined,
-        } as YnabRow),
+        }) as YnabRow,
     );
 
   return [
@@ -48,7 +48,7 @@ export const aquaMatcher: MatcherFunction = async (file: File) => {
   }
 
   const keys = data[0];
-  const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+  const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
   if (missingKeys.length === 0) {
     return true;
