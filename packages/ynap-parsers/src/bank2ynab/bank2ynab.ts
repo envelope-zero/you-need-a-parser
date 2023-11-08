@@ -115,7 +115,7 @@ export const generateParser = (config: ParserConfig) => {
     const content = await readEncodedFile(file);
     const { data } = await parseCsv(content.trim());
 
-    const match = file.name.match(new RegExp(config.filenamePattern));
+    const match = file.name.match(new RegExp(`^${config.filenamePattern}`));
 
     if (!match) {
       return false;
