@@ -18,16 +18,32 @@ export const parseNumber = (input?: string) => {
   }
 
   // Remove all superfluous characters
-  const cleaned = input.replace(/[^\d.,-]/g, '');
+  let cleaned = input.replace(/[^\d.,-]/g, '');
   if (cleaned == '') {
     return NaN;
   }
 
-  try {
-    if (cleaned.includes(',')) {
-      return Number(cleaned.replace(',', '.'));
-    }
+  // If the cleaned string contains both "," and ".", it has
+  // one or more thousands separators AND a decimal separator.
+  // Determine the decimal separator and remove the thousands separator
+  if ([',', '.'].every((term) => cleaned.includes(term))) {
+    const comma = cleaned.indexOf(',');
+    const dot = cleaned.indexOf('.');
 
+    if (dot > comma) {
+      // If "." is used as decimal separator, remove the thousands separators
+      cleaned = cleaned.replace(',', '');
+    } else {
+      // If "," is used as decimal separator, remove the "." as thousands separator
+      cleaned = cleaned.replace('.', '');
+    }
+  }
+
+  // Replace "," as decimal separator with "."
+  cleaned = cleaned.replace(',', '.');
+
+  // Try to cast the string to a number
+  try {
     return Number(cleaned);
   } catch (e) {
     return undefined;
