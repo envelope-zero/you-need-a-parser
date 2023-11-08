@@ -4,3 +4,4 @@
 ""
 "Buchungsdatum";"Wertstellung";"Status";"Zahlungspflichtige*r";"Zahlungsempfänger*in";"Verwendungszweck";"Umsatztyp";"Betrag";"Gläubiger-ID";"Mandatsreferenz";"Kundenreferenz"
 "06.11.23";"06.11.23";"Gebucht";"ISSUER";"exampleIssuer";"2023-11-03 Debitk.95 VISA Debit";"Ausgang";"-82,80 €";"";"";"123456789123456"
+"28.09.23";"28.09.23";"Gebucht";"Someone";"Someone Else";"exampleNote";"Eingang";"2.017,32 €";"";"";"123456789012345"
