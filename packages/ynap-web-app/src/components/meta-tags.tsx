@@ -1,21 +1,21 @@
-import Helmet from 'react-helmet';
-import React from 'react';
+import Helmet from 'react-helmet'
+import React from 'react'
 
 interface MetaTagsProps {
-  title?: string;
-  description?: string;
+  title?: string
+  description?: string
 }
 
 const MetaTags: React.FC<MetaTagsProps> = ({ title, description }) => {
   const pageTitle = title
     ? `${title} – You Need A Parser`
-    : 'You Need A Parser – Convert bank statements for use with YNAB';
+    : 'You Need A Parser – Convert bank statements for use with YNAB'
 
   const pageDescription =
     description ||
     'YNAP converts CSV files from a variety of sources into a ' +
       'format that can easily be imported into You Need A Budget. ' +
-      'Your files will never leave your browser.';
+      'Your files will never leave your browser.'
 
   return (
     <Helmet>
@@ -25,9 +25,23 @@ const MetaTags: React.FC<MetaTagsProps> = ({ title, description }) => {
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
       <link rel="manifest" href="/manifest.json" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png"
+      />
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3ebd93" />
       <meta name="msapplication-TileColor" content="#3ebd93" />
       <meta name="theme-color" content="#f1f4f9" />
@@ -47,7 +61,7 @@ const MetaTags: React.FC<MetaTagsProps> = ({ title, description }) => {
       <meta property="twitter:description" content={pageDescription} />
       <meta property="twitter:image" content="/meta-image.jpg" />
     </Helmet>
-  );
-};
+  )
+}
 
-export default MetaTags;
+export default MetaTags

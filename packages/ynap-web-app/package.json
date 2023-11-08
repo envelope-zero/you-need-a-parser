@@ -1,6 +1,6 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.101",
+  "version": "1.15.102",
   "license": "MIT",
   "private": true,
   "dependencies": {

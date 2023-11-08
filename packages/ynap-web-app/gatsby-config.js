@@ -1,4 +1,4 @@
-const dateFns = require('date-fns');
+const dateFns = require('date-fns')
 
 module.exports = {
   siteMetadata: {
@@ -13,4 +13,4 @@ module.exports = {
     `gatsby-plugin-netlify`,
     'gatsby-plugin-offline',
   ],
-};
+}

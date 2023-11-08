@@ -1,32 +1,32 @@
-import 'mdn-polyfills/String.prototype.startsWith';
-import { ParserFunction, MatcherFunction, ParserModule, YnabRow } from '../..';
-import { parse } from '../../util/papaparse';
+import 'mdn-polyfills/String.prototype.startsWith'
+import { ParserFunction, MatcherFunction, ParserModule, YnabRow } from '../..'
+import { parse } from '../../util/papaparse'
 
 export interface MarcusRow {
-  TransactionDate: string;
-  Description: string;
-  Value: string;
-  AccountBalance: string;
-  AccountName: string;
-  AccountNumber: string;
+  TransactionDate: string
+  Description: string
+  Value: string
+  AccountBalance: string
+  AccountName: string
+  AccountNumber: string
 }
 
 export const generateYnabDate = (input: string) => {
-  const match = input.match(/(\d{4})(\d{2})(\d{2})/);
+  const match = input.match(/(\d{4})(\d{2})(\d{2})/)
 
   if (!match) {
-    throw new Error('The input is not a valid date. Expected format: YYYYMMDD');
+    throw new Error('The input is not a valid date. Expected format: YYYYMMDD')
   }
 
-  const [, year, month, day] = match;
-  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/');
-};
+  const [, year, month, day] = match
+  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/')
+}
 
 export const marcusParser: ParserFunction = async (file: File) => {
-  const { data } = await parse(file, { header: true });
+  const { data } = await parse(file, { header: true })
 
   const groupedData = (data as MarcusRow[])
-    .filter((r) => r.TransactionDate && r.Value)
+    .filter(r => r.TransactionDate && r.Value)
     .reduce(
       (acc, cur) => {
         const row = {
@@ -34,27 +34,28 @@ export const marcusParser: ParserFunction = async (file: File) => {
           Memo: cur.Description,
           Outflow:
             Number(cur.Value) < 0 ? (-Number(cur.Value)).toFixed(2) : undefined,
-          Inflow: Number(cur.Value) > 0 ? Number(cur.Value).toFixed(2) : undefined,
-        };
-
-        const key = cur.AccountName || 'no-account';
-
-        if (Object.keys(acc).includes(key)) {
-          acc[key].push(row);
-        } else {
-          acc[key] = [row];
+          Inflow:
+            Number(cur.Value) > 0 ? Number(cur.Value).toFixed(2) : undefined,
         }
 
-        return acc;
-      },
-      {} as { [k: string]: YnabRow[] },
-    );
+        const key = cur.AccountName || 'no-account'
 
-  return Object.keys(groupedData).map((key) => ({
+        if (Object.keys(acc).includes(key)) {
+          acc[key].push(row)
+        } else {
+          acc[key] = [row]
+        }
+
+        return acc
+      },
+      {} as { [k: string]: YnabRow[] }
+    )
+
+  return Object.keys(groupedData).map(key => ({
     accountName: key,
     data: groupedData[key],
-  }));
-};
+  }))
+}
 
 export const marcusMatcher: MatcherFunction = async (file: File) => {
   const requiredKeys: (keyof MarcusRow)[] = [
@@ -64,23 +65,23 @@ export const marcusMatcher: MatcherFunction = async (file: File) => {
     'AccountBalance',
     'AccountName',
     'AccountNumber',
-  ];
+  ]
 
-  const { data } = await parse(file, { header: true });
+  const { data } = await parse(file, { header: true })
 
   if (data.length === 0) {
-    return false;
+    return false
   }
 
-  const keys = Object.keys(data[0]);
-  const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
+  const keys = Object.keys(data[0])
+  const missingKeys = requiredKeys.filter(k => !keys.includes(k))
 
   if (missingKeys.length === 0) {
-    return true;
+    return true
   }
 
-  return false;
-};
+  return false
+}
 
 export const marcus: ParserModule = {
   name: 'Marcus',
@@ -91,4 +92,4 @@ export const marcus: ParserModule = {
   link: 'https://www.marcus.co.uk/uk/en',
   match: marcusMatcher,
   parse: marcusParser,
-};
+}

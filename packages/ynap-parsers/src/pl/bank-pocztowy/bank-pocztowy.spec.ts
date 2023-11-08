@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import iconv from 'iconv-lite';
+import fs from 'fs'
+import path from 'path'
+import iconv from 'iconv-lite'
 
-import { YnabFile } from '../..';
-import { bankPocztowy, FILE_ENCODING } from './bank-pocztowy';
+import { YnabFile } from '../..'
+import { bankPocztowy, FILE_ENCODING } from './bank-pocztowy'
 
 const ynabResult: YnabFile[] = [
   {
@@ -31,47 +31,47 @@ const ynabResult: YnabFile[] = [
       },
     ],
   },
-];
+]
 
 describe('Bank Pocztowy Parser Module', () => {
   describe('Matcher', () => {
     it('should match bank pocztowy files by file name', async () => {
-      const fileName = '1571076127593.csv';
-      const result = !!fileName.match(bankPocztowy.filenamePattern);
-      expect(result).toBe(true);
-    });
+      const fileName = '1571076127593.csv'
+      const result = !!fileName.match(bankPocztowy.filenamePattern)
+      expect(result).toBe(true)
+    })
 
     it('should not match other files by file name', async () => {
-      const invalidFile = new File([], 'test.csv');
-      const result = await bankPocztowy.match(invalidFile);
-      expect(result).toBe(false);
-    });
+      const invalidFile = new File([], 'test.csv')
+      const result = await bankPocztowy.match(invalidFile)
+      expect(result).toBe(false)
+    })
 
     it('should match bankPocztowy files by fields', async () => {
       const content = fs.readFileSync(
-        path.resolve(__dirname, 'test-data', '1571076127593.csv'),
-      );
-      const file = new File([iconv.decode(content, FILE_ENCODING)], 'test.csv');
-      const result = await bankPocztowy.match(file);
-      expect(result).toBe(true);
-    });
+        path.resolve(__dirname, 'test-data', '1571076127593.csv')
+      )
+      const file = new File([iconv.decode(content, FILE_ENCODING)], 'test.csv')
+      const result = await bankPocztowy.match(file)
+      expect(result).toBe(true)
+    })
 
     it('should not match empty files', async () => {
-      const file = new File([], 'test.csv');
-      const result = await bankPocztowy.match(file);
-      expect(result).toBe(false);
-    });
-  });
+      const file = new File([], 'test.csv')
+      const result = await bankPocztowy.match(file)
+      expect(result).toBe(false)
+    })
+  })
 
   describe('Parser', () => {
     it('should parse data correctly', async () => {
       const content = fs.readFileSync(
-        path.resolve(__dirname, 'test-data', '1571076127593.csv'),
-      );
-      const file = new File([content], '1571076127593.csv');
-      const result = await bankPocztowy.parse(file);
+        path.resolve(__dirname, 'test-data', '1571076127593.csv')
+      )
+      const file = new File([content], '1571076127593.csv')
+      const result = await bankPocztowy.parse(file)
 
-      expect(result).toEqual(ynabResult);
-    });
-  });
-});
+      expect(result).toEqual(ynabResult)
+    })
+  })
+})

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Link, graphql } from 'gatsby';
-import { saveAs } from 'file-saver';
-import styled, { keyframes, css } from 'styled-components';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from 'react'
+import { Link, graphql } from 'gatsby'
+import { saveAs } from 'file-saver'
+import styled, { keyframes, css } from 'styled-components'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-import '../styles/index.css';
-import { parseFile, parsers, countries } from '@envelope-zero/ynap-parsers';
-import MetaTags from '../components/meta-tags';
-import { GitHubBadge } from '../components/github-badge';
+import '../styles/index.css'
+import { parseFile, parsers, countries } from '@envelope-zero/ynap-parsers'
+import MetaTags from '../components/meta-tags'
+import { GitHubBadge } from '../components/github-badge'
 
 const pulse = keyframes`
   0% {
@@ -20,7 +20,7 @@ const pulse = keyframes`
   100% {
       box-shadow: 0 0 0 0 rgba(62, 189, 147, 0);
   }
-`;
+`
 
 const Container = styled.div<{ uploadHover?: boolean }>`
   min-height: 100vh;
@@ -41,7 +41,7 @@ const Container = styled.div<{ uploadHover?: boolean }>`
     margin-bottom: 4rem;
   }
 
-  ${(p) =>
+  ${p =>
     p.uploadHover &&
     css`
       background-color: hsl(218, 40, 90);
@@ -55,7 +55,7 @@ const Container = styled.div<{ uploadHover?: boolean }>`
         border-color: #3ebd93;
       }
     `}
-`;
+`
 
 const DropArea = styled.div`
   display: flex;
@@ -71,7 +71,7 @@ const DropArea = styled.div`
   border-radius: 2rem;
 
   transition: border-color 0.2s;
-`;
+`
 
 const UploadIcon = styled.svg`
   display: block;
@@ -83,7 +83,7 @@ const UploadIcon = styled.svg`
   .arrow-up {
     transition: transform 0.2s;
   }
-`;
+`
 
 const Footer = styled.footer`
   p {
@@ -95,93 +95,93 @@ const Footer = styled.footer`
       opacity: 0.8;
     }
   }
-`;
+`
 
 const App: React.FC<{ version: string; commit: string; timestamp: string }> = ({
   version,
   commit,
   timestamp,
 }) => {
-  const [uploadHover, setUploadHover] = useState(false);
+  const [uploadHover, setUploadHover] = useState(false)
 
   useEffect(() => {
     const enter = (e: DragEvent) => {
-      setUploadHover(true);
-      e.preventDefault();
-      e.stopPropagation();
-    };
+      setUploadHover(true)
+      e.preventDefault()
+      e.stopPropagation()
+    }
 
     const leave = (e: DragEvent) => {
-      setUploadHover(false);
-      e.preventDefault();
-      e.stopPropagation();
-    };
+      setUploadHover(false)
+      e.preventDefault()
+      e.stopPropagation()
+    }
 
     const drop = async (e: DragEvent) => {
-      setUploadHover(false);
-      e.preventDefault();
-      e.stopPropagation();
+      setUploadHover(false)
+      e.preventDefault()
+      e.stopPropagation()
 
-      const files = Array.from(e.dataTransfer!.files);
-      let errors: number = 0;
-      let resultCount: number = 0;
+      const files = Array.from(e.dataTransfer!.files)
+      let errors: number = 0
+      let resultCount: number = 0
 
       for (const file of files) {
         try {
-          const result = await parseFile(file);
+          const result = await parseFile(file)
 
           for (const parsedFile of result) {
             const blob = new Blob([parsedFile.data], {
               type: 'text/csv;charset=utf-8',
-            });
+            })
             const fileName = [
               parsedFile.matchedParser.name,
               parsedFile.accountName,
               'ynap',
             ]
-              .filter((e) => e)
-              .join('-');
-            saveAs(blob, `${fileName}.csv`);
-            resultCount++;
+              .filter(e => e)
+              .join('-')
+            saveAs(blob, `${fileName}.csv`)
+            resultCount++
           }
         } catch (e) {
-          errors++;
+          errors++
           toast(
             <>
               The file <strong>{file.name}</strong> errored: {e.message}
             </>,
-            { type: 'error' },
-          );
-          throw e;
+            { type: 'error' }
+          )
+          throw e
         }
       }
 
-      const successCount = files.length - errors;
+      const successCount = files.length - errors
       if (files.length - errors > 0) {
         toast(
           <>
             Converted <strong>{successCount}</strong> input{' '}
             {successCount === 1 ? 'file' : 'files'} into{' '}
-            <strong>{resultCount}</strong> {resultCount === 1 ? 'file' : 'files'} for
-            YNAB
+            <strong>{resultCount}</strong>{' '}
+            {resultCount === 1 ? 'file' : 'files'} for YNAB
           </>,
-          { type: 'success' },
-        );
+          { type: 'success' }
+        )
       }
-    };
+    }
 
-    window.document.body.addEventListener('dragenter', enter);
-    window.document.body.addEventListener('dragover', enter);
-    window.document.body.addEventListener('dragleave', leave);
-    window.document.body.addEventListener('drop', drop);
+    window.document.body.addEventListener('dragenter', enter)
+    window.document.body.addEventListener('dragover', enter)
+    window.document.body.addEventListener('dragleave', leave)
+    window.document.body.addEventListener('drop', drop)
 
     return () => {
-      window.document.body.removeEventListener('dragenter', enter);
-      window.document.body.removeEventListener('dragover', enter);
-      window.document.body.removeEventListener('dragleave', leave);
-      window.document.body.removeEventListener('drop', drop);
-    };
-  }, []);
+      window.document.body.removeEventListener('dragenter', enter)
+      window.document.body.removeEventListener('dragover', enter)
+      window.document.body.removeEventListener('dragleave', leave)
+      window.document.body.removeEventListener('drop', drop)
+    }
+  }, [])
 
   return (
     <>
@@ -189,13 +189,13 @@ const App: React.FC<{ version: string; commit: string; timestamp: string }> = ({
       <Container uploadHover={uploadHover}>
         <h1>You Need A Parser</h1>
         <p>
-          YNAP converts CSV files from a variety of sources into a format that can
-          easily be imported into{' '}
+          YNAP converts CSV files from a variety of sources into a format that
+          can easily be imported into{' '}
           <a href="https://youneedabudget.com" target="_blank" rel="noopener">
             You Need A Budget
           </a>
-          . Just drag the files you want to convert into this window. Your files will
-          never leave your browser.
+          . Just drag the files you want to convert into this window. Your files
+          will never leave your browser.
         </p>
         <DropArea>
           <UploadIcon
@@ -218,7 +218,7 @@ const App: React.FC<{ version: string; commit: string; timestamp: string }> = ({
           YNAP supports {parsers.length} different formats for banks of{' '}
           {countries.length} countries, including{' '}
           {parsers
-            .map((p) => (
+            .map(p => (
               <>
                 <a key={p.link} href={p.link} target="_blank">
                   {p.name}
@@ -263,8 +263,8 @@ const App: React.FC<{ version: string; commit: string; timestamp: string }> = ({
         </Footer>
       </Container>
     </>
-  );
-};
+  )
+}
 
 const Index = ({ data }) => (
   <>
@@ -276,7 +276,7 @@ const Index = ({ data }) => (
       timestamp={data.site.siteMetadata.timestamp}
     />
   </>
-);
+)
 
 export const query = graphql`
   {
@@ -288,6 +288,6 @@ export const query = graphql`
       }
     }
   }
-`;
+`
 
-export default Index;
+export default Index

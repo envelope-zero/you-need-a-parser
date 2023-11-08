@@ -1,46 +1,48 @@
-import 'mdn-polyfills/String.prototype.startsWith';
-import { ParserFunction, MatcherFunction, ParserModule } from '../..';
-import { parse } from '../../util/papaparse';
-import { readEncodedFile } from '../../util/read-encoded-file';
+import 'mdn-polyfills/String.prototype.startsWith'
+import { ParserFunction, MatcherFunction, ParserModule } from '../..'
+import { parse } from '../../util/papaparse'
+import { readEncodedFile } from '../../util/read-encoded-file'
 
 export interface ComdirectRow {
-  Buchungstag: string;
-  'Wertstellung (Valuta)': string;
-  Vorgang: string;
-  Buchungstext: string;
-  'Umsatz in EUR': string;
+  Buchungstag: string
+  'Wertstellung (Valuta)': string
+  Vorgang: string
+  Buchungstext: string
+  'Umsatz in EUR': string
 }
 
 export const generateYnabDate = (input: string) => {
-  const match = input.match(/(\d{2})\.(\d{2})\.(\d{4})/);
+  const match = input.match(/(\d{2})\.(\d{2})\.(\d{4})/)
 
   if (!match) {
-    throw new Error('The input is not a valid date. Expected format: YYYY-MM-DD');
+    throw new Error(
+      'The input is not a valid date. Expected format: YYYY-MM-DD'
+    )
   }
 
-  const [, day, month, year] = match;
-  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/');
-};
+  const [, day, month, year] = match
+  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/')
+}
 
 // Replace '.' with '' to remove German format thousands separator, then
 // replace ',' with '.' to convert from German decimal separator to TS-style '.'
 export const parseNumber = (input: string) =>
-  Number(input.replace('.', '').replace(',', '.'));
+  Number(input.replace('.', '').replace(',', '.'))
 
 export const trimMetaData = (input: string) => {
-  const beginning = input.indexOf('"Buchungstag"');
-  const end = input.lastIndexOf('\n"Alter Kontostand"');
+  const beginning = input.indexOf('"Buchungstag"')
+  const end = input.lastIndexOf('\n"Alter Kontostand"')
 
   if (beginning === -1 || end === -1) {
     throw new Error(
-      'Metadata could not be trimmed because the file format is incorrect.',
-    );
+      'Metadata could not be trimmed because the file format is incorrect.'
+    )
   }
 
   return input
     .substr(beginning, input.length - beginning - (input.length - end))
-    .trim();
-};
+    .trim()
+}
 
 const postingTextFields = {
   Buchungstext: 'Buchungstext',
@@ -50,47 +52,47 @@ const postingTextFields = {
   'Kto/IBAN': 'Kto/IBAN',
   'BLZ/BIC': 'BLZ/BIC',
   'Ref.': 'Ref.',
-};
+}
 
 export const extractField = (
   postingText: string,
-  field: keyof typeof postingTextFields,
+  field: keyof typeof postingTextFields
 ) => {
   // First, split the input by field name
   // so we can remove everything before that.
-  const split1 = postingText.split(field);
+  const split1 = postingText.split(field)
 
   if (split1.length < 2) {
     // Field doesn't exist
-    return undefined;
+    return undefined
   }
 
   // Next, split the new string again by any possible
   // key so we can remove everything after that.
   const nextField = new RegExp(
     `(${Object.keys(postingTextFields)
-      .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+      .map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
       .join('|')})`,
-    'i',
-  );
-  const rawContent = split1[1].split(nextField)[0];
+    'i'
+  )
+  const rawContent = split1[1].split(nextField)[0]
 
   // Last, trim the content to remove any white spaces
   // or other residue from the previous operations.
-  return rawContent.replace(/(^[:.\s]+|\s+$)/g, '');
-};
+  return rawContent.replace(/(^[:.\s]+|\s+$)/g, '')
+}
 
 export const comdirectParser: ParserFunction = async (file: File) => {
-  const fileString = trimMetaData(await readEncodedFile(file));
-  const { data } = await parse(fileString, { header: true });
+  const fileString = trimMetaData(await readEncodedFile(file))
+  const { data } = await parse(fileString, { header: true })
 
   return [
     {
       data: (data as ComdirectRow[])
         .filter(
-          (r) => r.Buchungstag && r.Buchungstag != 'offen' && r['Umsatz in EUR'],
+          r => r.Buchungstag && r.Buchungstag != 'offen' && r['Umsatz in EUR']
         )
-        .map((r) => ({
+        .map(r => ({
           Date: generateYnabDate(r.Buchungstag),
           Payee:
             extractField(r.Buchungstext, 'Empfänger') ||
@@ -107,8 +109,8 @@ export const comdirectParser: ParserFunction = async (file: File) => {
               : undefined,
         })),
     },
-  ];
-};
+  ]
+}
 
 export const comdirectMatcher: MatcherFunction = async (file: File) => {
   const requiredKeys: (keyof ComdirectRow)[] = [
@@ -117,37 +119,37 @@ export const comdirectMatcher: MatcherFunction = async (file: File) => {
     'Buchungstext',
     'Umsatz in EUR',
     'Vorgang',
-  ];
+  ]
 
-  const rawFileString = await readEncodedFile(file);
+  const rawFileString = await readEncodedFile(file)
 
   if (rawFileString.startsWith(';\n"Umsätze Verrechnungskonto')) {
-    return true;
+    return true
   }
 
   if (rawFileString.length === 0) {
-    return false;
+    return false
   }
 
   try {
-    const { data } = await parse(trimMetaData(rawFileString), { header: true });
+    const { data } = await parse(trimMetaData(rawFileString), { header: true })
 
     if (data.length === 0) {
-      return false;
+      return false
     }
 
-    const keys = Object.keys(data[0]);
-    const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
+    const keys = Object.keys(data[0])
+    const missingKeys = requiredKeys.filter(k => !keys.includes(k))
 
     if (missingKeys.length === 0) {
-      return true;
+      return true
     }
   } catch (e) {
-    return false;
+    return false
   }
 
-  return false;
-};
+  return false
+}
 
 export const comdirect: ParserModule = {
   name: 'comdirect',
@@ -157,4 +159,4 @@ export const comdirect: ParserModule = {
   link: 'https://www.comdirect.de',
   match: comdirectMatcher,
   parse: comdirectParser,
-};
+}

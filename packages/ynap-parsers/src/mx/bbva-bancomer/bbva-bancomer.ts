@@ -1,7 +1,7 @@
-import 'mdn-polyfills/String.prototype.startsWith';
-import { ParserFunction, MatcherFunction, ParserModule } from '../..';
-import { parse } from '../../util/papaparse';
-import { readEncodedFile } from '../../util/read-encoded-file';
+import 'mdn-polyfills/String.prototype.startsWith'
+import { ParserFunction, MatcherFunction, ParserModule } from '../..'
+import { parse } from '../../util/papaparse'
+import { readEncodedFile } from '../../util/read-encoded-file'
 
 // Bancomer Row:
 // DATE, DESCRIPTION, OUTFLOW, INFLOW, BALANCE
@@ -12,77 +12,82 @@ import { readEncodedFile } from '../../util/read-encoded-file';
  */
 
 export const generateYnabDate = (input: string) => {
-  const match = input.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  const match = input.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/)
 
   if (!match) {
-    throw new Error('The input is not a valid date. Expected format: DD/MM/YYYY');
+    throw new Error(
+      'The input is not a valid date. Expected format: DD/MM/YYYY'
+    )
   }
 
-  const [, day, month, year] = match;
-  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/');
-};
+  const [, day, month, year] = match
+  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/')
+}
 
-export const parseNumber = (input: string) => Number(input.replace(',', ''));
+export const parseNumber = (input: string) => Number(input.replace(',', ''))
 
 export const trimMetaData = (input: string) => {
-  const lines = input.split('\n');
+  const lines = input.split('\n')
 
   return lines
     .splice(3)
     .filter(
-      (l) =>
-        l && l.trim() !== '' && !l.startsWith('     ') && !l.match(/^"BBVA (.+)"/),
+      l =>
+        l &&
+        l.trim() !== '' &&
+        !l.startsWith('     ') &&
+        !l.match(/^"BBVA (.+)"/)
     )
-    .join('\n');
-};
+    .join('\n')
+}
 
 export const bancomerParser: ParserFunction = async (file: File) => {
-  const fileString = trimMetaData(await readEncodedFile(file, 'utf16le'));
-  const { data } = await parse(fileString, { delimiter: '\t' });
+  const fileString = trimMetaData(await readEncodedFile(file, 'utf16le'))
+  const { data } = await parse(fileString, { delimiter: '\t' })
 
   return [
     {
       data: (data as string[][])
-        .filter((r) => r[0] && r[0].trim())
-        .map((r) => ({
+        .filter(r => r[0] && r[0].trim())
+        .map(r => ({
           Date: generateYnabDate(r[0]),
           Memo: r[1],
           Outflow: r[2] ? parseNumber(r[2]) : undefined,
           Inflow: r[3] ? parseNumber(r[3]) : undefined,
         })),
     },
-  ];
-};
+  ]
+}
 
 export const bancomerMatcher: MatcherFunction = async (file: File) => {
-  const rawFileString = await readEncodedFile(file, 'utf16le');
+  const rawFileString = await readEncodedFile(file, 'utf16le')
 
   if (rawFileString.length === 0) {
-    return false;
+    return false
   }
 
   if (
     rawFileString.startsWith('Card number: ') ||
     rawFileString.startsWith('Número de Tarjeta: ')
   ) {
-    return true;
+    return true
   }
 
   // This might happen when the file encoding is wrong.
   if (rawFileString.indexOf('\n') === -1) {
-    return false;
+    return false
   }
 
-  const headerRow = rawFileString.split('\n')[2].trim();
+  const headerRow = rawFileString.split('\n')[2].trim()
   if (
     headerRow === 'DATE\tDESCRIPTION\tOUTFLOW\tINFLOW\tBALANCE' ||
     headerRow === 'FECHA\tDESCRIPCIÓN\tCARGO\tABONO\tSALDO'
   ) {
-    return true;
+    return true
   }
 
-  return false;
-};
+  return false
+}
 
 export const bancomer: ParserModule = {
   name: 'bancomer',
@@ -92,4 +97,4 @@ export const bancomer: ParserModule = {
   link: 'https://www.bancomer.com',
   match: bancomerMatcher,
   parse: bancomerParser,
-};
+}

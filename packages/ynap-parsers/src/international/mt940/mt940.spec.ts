@@ -1,9 +1,11 @@
-import { mt940matcher, mt940parser, generateYnabDate } from './mt940';
-import fs from 'fs';
-import path from 'path';
-import { YnabFile } from '../..';
+import { mt940matcher, mt940parser, generateYnabDate } from './mt940'
+import fs from 'fs'
+import path from 'path'
+import { YnabFile } from '../..'
 
-const content = fs.readFileSync(path.join(__dirname, 'test-data/mt940-bunq.sta'));
+const content = fs.readFileSync(
+  path.join(__dirname, 'test-data/mt940-bunq.sta')
+)
 
 const output: YnabFile[] = [
   {
@@ -29,35 +31,35 @@ const output: YnabFile[] = [
       },
     ],
   },
-];
+]
 
 describe('MT940 Parser Module', () => {
   describe('Matcher', () => {
     it('should correctly match MT940 files', async () => {
-      const result = await mt940matcher(new File([content], ''));
-      expect(result).toBeTruthy();
-    });
+      const result = await mt940matcher(new File([content], ''))
+      expect(result).toBeTruthy()
+    })
 
     it('should fail to match invalid files', async () => {
-      const result = await mt940matcher(new File(['test'], ''));
-      expect(result).toBeFalsy();
-    });
-  });
+      const result = await mt940matcher(new File(['test'], ''))
+      expect(result).toBeFalsy()
+    })
+  })
 
   describe('Parser', () => {
     it('should correctly parse MT940 files', async () => {
-      const result = await mt940parser(new File([content], 'test.sta'));
-      expect(result).toEqual(output);
-    });
-  });
+      const result = await mt940parser(new File([content], 'test.sta'))
+      expect(result).toEqual(output)
+    })
+  })
 
   describe('Date Converter', () => {
     it('should convert dates correctly', () => {
-      expect(generateYnabDate('2018-09-01')).toEqual('09/01/2018');
-    });
+      expect(generateYnabDate('2018-09-01')).toEqual('09/01/2018')
+    })
 
     it('should throw an error when the input date is incorrect', () => {
-      expect(() => generateYnabDate('1.1.1')).toThrow('not a valid date');
-    });
-  });
-});
+      expect(() => generateYnabDate('1.1.1')).toThrow('not a valid date')
+    })
+  })
+})
