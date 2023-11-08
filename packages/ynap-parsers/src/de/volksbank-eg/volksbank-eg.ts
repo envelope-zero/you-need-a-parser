@@ -52,7 +52,7 @@ export const sanitizeMemo = (input: string) => {
   return input
     .split('\n')
     .slice(1)
-    .filter(r => !r.startsWith('Verwendete TAN:'))
+    .filter((r) => !r.startsWith('Verwendete TAN:'))
     .join(' ');
 };
 
@@ -63,8 +63,8 @@ export const volksbankParser: ParserFunction = async (file: File) => {
   return [
     {
       data: (data as VolksbankRow[])
-        .filter(r => r.Valuta && r.Umsatz)
-        .map(r => ({
+        .filter((r) => r.Valuta && r.Umsatz)
+        .map((r) => ({
           Date: generateYnabDate(r.Valuta),
           Payee: r['Empfänger/Zahlungspflichtiger'],
           Memo: sanitizeMemo(r['Vorgang/Verwendungszweck']),
@@ -109,7 +109,7 @@ export const volksbankMatcher: MatcherFunction = async (file: File) => {
     }
 
     const keys = Object.keys(data[0]);
-    const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+    const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
     if (missingKeys.length === 0) {
       return true;

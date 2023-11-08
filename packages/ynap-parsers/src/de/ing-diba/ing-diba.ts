@@ -24,7 +24,8 @@ export const generateYnabDate = (input: string) => {
   return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/');
 };
 
-export const parseNumber = (input: string) => Number(input.replace('.','').replace(',', '.'));
+export const parseNumber = (input: string) =>
+  Number(input.replace('.', '').replace(',', '.'));
 
 export const trimMetaData = (input: string) =>
   input.substr(input.indexOf('Buchung;'));
@@ -36,8 +37,8 @@ export const ingDiBaParser: ParserFunction = async (file: File) => {
   return [
     {
       data: (data as IngDiBaRow[])
-        .filter(r => r.Buchung && r.Betrag)
-        .map(r => ({
+        .filter((r) => r.Buchung && r.Betrag)
+        .map((r) => ({
           Date: generateYnabDate(r.Buchung),
           Payee: r['Auftraggeber/Empfänger'],
           Memo: r.Verwendungszweck,
@@ -78,7 +79,7 @@ export const ingDiBaMatcher: MatcherFunction = async (file: File) => {
     }
 
     const keys = Object.keys(data[0]);
-    const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+    const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
     if (missingKeys.length === 0) {
       return true;

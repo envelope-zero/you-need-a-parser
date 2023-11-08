@@ -27,8 +27,8 @@ export const sparbankenTanumParser: ParserFunction = async (file: File) => {
   return [
     {
       data: data
-        .filter(r => r[0] && r[2] !== '-')
-        .map(r => ({
+        .filter((r) => r[0] && r[2] !== '-')
+        .map((r) => ({
           Date: generateYnabDate(r[1]),
           Payee: String(r[0]).trim(),
           Outflow: toNumber(r[3]) < 0 ? (-toNumber(r[3])).toFixed(2) : undefined,

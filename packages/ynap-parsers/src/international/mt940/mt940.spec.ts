@@ -19,8 +19,7 @@ const output: YnabFile[] = [
         Outflow: 0.99,
         Inflow: undefined,
         Date: '08/26/2019',
-        Memo:
-          '/NAME/Aral Station 140974148/REMI/Aral Station 140974148 Brueggen, DE',
+        Memo: '/NAME/Aral Station 140974148/REMI/Aral Station 140974148 Brueggen, DE',
       },
       {
         Outflow: 0.01,

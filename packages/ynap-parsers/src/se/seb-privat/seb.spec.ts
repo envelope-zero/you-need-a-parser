@@ -3,27 +3,25 @@ import { YnabFile } from '../..';
 import fs from 'fs';
 import path from 'path';
 
-const content = fs.readFileSync(
-  path.join(__dirname, 'test-data/kontoutdrag.xlsx'),
-);
+const content = fs.readFileSync(path.join(__dirname, 'test-data/kontoutdrag.xlsx'));
 
 const ynabResult: YnabFile[] = [
   {
     data: [
       {
-        "Category": undefined,
-        'Date': '03/30/2020',
-        'Inflow': 875.63,
-        'Memo': 'VOLVOCARD',
-        'Outflow': undefined,
+        Category: undefined,
+        Date: '03/30/2020',
+        Inflow: 875.63,
+        Memo: 'VOLVOCARD',
+        Outflow: undefined,
       },
       {
-        'Category': undefined,
-        'Date': '03/29/2020',
-        'Inflow': undefined,
-        'Memo': 'BLOCKET AB',
-        'Outflow': 125,
-      }
+        Category: undefined,
+        Date: '03/29/2020',
+        Inflow: undefined,
+        Memo: 'BLOCKET AB',
+        Outflow: 125,
+      },
     ],
   },
 ];

@@ -14,7 +14,7 @@ export const generateYnabDate = (input: string) => {
   return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/');
 };
 
-export const mt940matcher: MatcherFunction = async file => {
+export const mt940matcher: MatcherFunction = async (file) => {
   const mt = await import('mt940-js');
   const buffer = await readToBuffer(file);
 
@@ -26,25 +26,25 @@ export const mt940matcher: MatcherFunction = async file => {
   return false;
 };
 
-export const mt940parser: ParserFunction = async file => {
+export const mt940parser: ParserFunction = async (file) => {
   const mt = await import('mt940-js');
   const buffer = await readToBuffer(file);
   const statements = await mt.read(buffer);
 
   return statements.map(
-    s =>
+    (s) =>
       ({
         accountName: [s.referenceNumber, s.accountId].filter(Boolean).join(' '),
         data: s.transactions.map(
-          t =>
+          (t) =>
             ({
               Inflow: t.isCredit ? t.amount : undefined,
               Outflow: t.isCredit ? undefined : t.amount,
               Date: generateYnabDate(t.entryDate),
               Memo: t.description,
-            } as YnabRow),
+            }) as YnabRow,
         ),
-      } as YnabFile),
+      }) as YnabFile,
   );
 };
 

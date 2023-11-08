@@ -37,7 +37,7 @@ export const sparbankenTanumParser: ParserFunction = async (file: File) => {
   });
 
   const groupedData = (data as Row[])
-    .filter(r => r.Radnummer && r.Belopp)
+    .filter((r) => r.Radnummer && r.Belopp)
     .reduce(
       (acc, cur) => {
         const amount = Number(cur.Belopp);
@@ -62,7 +62,7 @@ export const sparbankenTanumParser: ParserFunction = async (file: File) => {
       {} as Record<string, YnabRow[]>,
     );
 
-  return Object.keys(groupedData).map(key => ({
+  return Object.keys(groupedData).map((key) => ({
     accountName: key,
     data: groupedData[key],
   }));

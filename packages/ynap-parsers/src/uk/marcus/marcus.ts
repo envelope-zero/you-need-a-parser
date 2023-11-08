@@ -26,7 +26,7 @@ export const marcusParser: ParserFunction = async (file: File) => {
   const { data } = await parse(file, { header: true });
 
   const groupedData = (data as MarcusRow[])
-    .filter(r => r.TransactionDate && r.Value)
+    .filter((r) => r.TransactionDate && r.Value)
     .reduce(
       (acc, cur) => {
         const row = {
@@ -50,7 +50,7 @@ export const marcusParser: ParserFunction = async (file: File) => {
       {} as { [k: string]: YnabRow[] },
     );
 
-  return Object.keys(groupedData).map(key => ({
+  return Object.keys(groupedData).map((key) => ({
     accountName: key,
     data: groupedData[key],
   }));
@@ -73,7 +73,7 @@ export const marcusMatcher: MatcherFunction = async (file: File) => {
   }
 
   const keys = Object.keys(data[0]);
-  const missingKeys = requiredKeys.filter(k => !keys.includes(k));
+  const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
 
   if (missingKeys.length === 0) {
     return true;
@@ -86,7 +86,8 @@ export const marcus: ParserModule = {
   name: 'Marcus',
   country: 'uk',
   fileExtension: 'csv',
-  filenamePattern: /^Transactions (.+) (\d{4})-(\d{2})-(\d{2}) (\d{2})_(\d{2})\.csv$/,
+  filenamePattern:
+    /^Transactions (.+) (\d{4})-(\d{2})-(\d{2}) (\d{2})_(\d{2})\.csv$/,
   link: 'https://www.marcus.co.uk/uk/en',
   match: marcusMatcher,
   parse: marcusParser,

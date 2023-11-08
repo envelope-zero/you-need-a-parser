@@ -30,7 +30,7 @@ const fixInput = (input: string) =>
   input
     .trim()
     .split(/\n/)
-    .map(line =>
+    .map((line) =>
       line.replace(PAYEE_REGEXP, (match, a, b, payee) =>
         match.replace(payee, payee.replace(/,/g, '__')),
       ),
@@ -74,8 +74,8 @@ const bankPocztowyParser: ParserFunction = async (file: File) => {
   return [
     {
       data: result
-        .filter(item => item.length === 9)
-        .map(item => {
+        .filter((item) => item.length === 9)
+        .map((item) => {
           const [YYYY, MM, DD] = item[0].split(' ');
           const isOutflow = item[5].startsWith('-');
           const amount = item[5]

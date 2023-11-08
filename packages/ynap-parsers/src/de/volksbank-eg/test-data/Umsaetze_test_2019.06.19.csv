@@ -10,7 +10,7 @@ Zeitraum:;;von:;28.03.2019;bis:;;;;;;;;
 Betrag in EUR:;;von:; ;bis:; ;;;;;;;
 Sortiert nach:;Buchungstag;absteigend;;;;;;;;;;
 ;;;;;;;;;;;;
-Buchungstag;Valuta;Auftraggeber/Zahlungsempfänger;Empfänger/Zahlungspflichtiger;Konto-Nr.;IBAN;BLZ;BIC;Vorgang/Verwendungszweck;Kundenreferenz;Währung;Umsatz; 
+Buchungstag;Valuta;Auftraggeber/Zahlungsempfänger;Empfänger/Zahlungspflichtiger;Konto-Nr.;IBAN;BLZ;BIC;Vorgang/Verwendungszweck;Kundenreferenz;Währung;Umsatz;
 03.04.2019;04.04.2019;Hermann Testkunde;Gartenbauverein;12345678;;70190000;;"ÜBERWEISUNG
 Quartalsbeitrag Gartenbauverein
 Musterstadt 73 e.V.

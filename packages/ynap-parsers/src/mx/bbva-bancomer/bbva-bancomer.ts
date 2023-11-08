@@ -30,7 +30,7 @@ export const trimMetaData = (input: string) => {
   return lines
     .splice(3)
     .filter(
-      l =>
+      (l) =>
         l && l.trim() !== '' && !l.startsWith('     ') && !l.match(/^"BBVA (.+)"/),
     )
     .join('\n');
@@ -43,8 +43,8 @@ export const bancomerParser: ParserFunction = async (file: File) => {
   return [
     {
       data: (data as string[][])
-        .filter(r => r[0] && r[0].trim())
-        .map(r => ({
+        .filter((r) => r[0] && r[0].trim())
+        .map((r) => ({
           Date: generateYnabDate(r[0]),
           Memo: r[1],
           Outflow: r[2] ? parseNumber(r[2]) : undefined,

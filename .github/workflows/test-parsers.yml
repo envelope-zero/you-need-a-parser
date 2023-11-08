@@ -9,7 +9,6 @@ concurrency:
 permissions:
   packages: read
 
-
 jobs:
   build:
     runs-on: ubuntu-latest

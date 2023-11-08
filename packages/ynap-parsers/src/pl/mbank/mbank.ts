@@ -40,7 +40,7 @@ export const mbankMatch: MatcherFunction = async (file: File) => {
     }
 
     const keys = Object.keys(data[0]);
-    const missingKeys = REQUIRED_FIELDS.filter(k => !keys.includes(k));
+    const missingKeys = REQUIRED_FIELDS.filter((k) => !keys.includes(k));
 
     if (missingKeys.length === 0) {
       return true;
@@ -62,10 +62,10 @@ const mbankParser: ParserFunction = async (file: File) => {
   return [
     {
       data: result
-        .filter(item =>
-          REQUIRED_FIELDS.every(key => typeof item[key] !== 'undefined'),
+        .filter((item) =>
+          REQUIRED_FIELDS.every((key) => typeof item[key] !== 'undefined'),
         )
-        .map(item => {
+        .map((item) => {
           const [YYYY, MM, DD] = item['#Data operacji'].split('-');
           const isOutflow = item['#Kwota'].startsWith('-');
           const amount = item['#Kwota']
