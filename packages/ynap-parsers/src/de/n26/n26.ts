@@ -1,38 +1,40 @@
-import 'mdn-polyfills/String.prototype.startsWith';
-import { ParserFunction, MatcherFunction, ParserModule } from '../..';
-import { parse } from '../../util/papaparse';
+import 'mdn-polyfills/String.prototype.startsWith'
+import { ParserFunction, MatcherFunction, ParserModule } from '../..'
+import { parse } from '../../util/papaparse'
 
 export interface N26Row {
-  Date: string;
-  Payee: string;
-  'Transaction type': string;
-  'Payment reference': string;
-  Category: string;
-  'Amount (EUR)': string;
-  'Amount (Foreign Currency)': string;
-  'Type Foreign Currency': string;
-  'Exchange Rate': string;
+  Date: string
+  Payee: string
+  'Transaction type': string
+  'Payment reference': string
+  Category: string
+  'Amount (EUR)': string
+  'Amount (Foreign Currency)': string
+  'Type Foreign Currency': string
+  'Exchange Rate': string
 }
 
 export const generateYnabDate = (input: string) => {
-  const match = input.match(/(\d{4})-(\d{2})-(\d{2})/);
+  const match = input.match(/(\d{4})-(\d{2})-(\d{2})/)
 
   if (!match) {
-    throw new Error('The input is not a valid date. Expected format: YYYY-MM-DD');
+    throw new Error(
+      'The input is not a valid date. Expected format: YYYY-MM-DD'
+    )
   }
 
-  const [, year, month, day] = match;
-  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/');
-};
+  const [, year, month, day] = match
+  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/')
+}
 
 export const n26Parser: ParserFunction = async (file: File) => {
-  const { data } = await parse(file, { header: true });
+  const { data } = await parse(file, { header: true })
 
   return [
     {
       data: (data as N26Row[])
-        .filter((r) => r.Date && r['Amount (EUR)'])
-        .map((r) => ({
+        .filter(r => r.Date && r['Amount (EUR)'])
+        .map(r => ({
           Date: generateYnabDate(r.Date),
           Payee: r.Payee,
           Category: r.Category,
@@ -47,8 +49,8 @@ export const n26Parser: ParserFunction = async (file: File) => {
               : undefined,
         })),
     },
-  ];
-};
+  ]
+}
 
 export const n26Matcher: MatcherFunction = async (file: File) => {
   const requiredKeys: (keyof N26Row)[] = [
@@ -57,23 +59,23 @@ export const n26Matcher: MatcherFunction = async (file: File) => {
     'Transaction type',
     'Payment reference',
     'Amount (EUR)',
-  ];
+  ]
 
-  const { data } = await parse(file, { header: true });
+  const { data } = await parse(file, { header: true })
 
   if (data.length === 0) {
-    return false;
+    return false
   }
 
-  const keys = Object.keys(data[0]);
-  const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
+  const keys = Object.keys(data[0])
+  const missingKeys = requiredKeys.filter(k => !keys.includes(k))
 
   if (missingKeys.length === 0) {
-    return true;
+    return true
   }
 
-  return false;
-};
+  return false
+}
 
 export const n26: ParserModule = {
   name: 'N26',
@@ -83,4 +85,4 @@ export const n26: ParserModule = {
   link: 'https://support.n26.com/en-eu/fixing-an-issue/payments-and-transfers/how-to-export-a-list-of-my-transactions',
   match: n26Matcher,
   parse: n26Parser,
-};
+}

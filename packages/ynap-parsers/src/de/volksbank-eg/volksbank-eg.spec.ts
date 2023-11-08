@@ -1,6 +1,6 @@
-import { generateYnabDate, volksbankEG } from './volksbank-eg';
-import { YnabFile } from '../..';
-import { encode } from 'iconv-lite';
+import { generateYnabDate, volksbankEG } from './volksbank-eg'
+import { YnabFile } from '../..'
+import { encode } from 'iconv-lite'
 
 const content = encode(
   `Volksbank eG;;;;;;;;;;;;
@@ -31,8 +31,8 @@ Vielen Dank fuer Ihren Einkauf";;EUR;258,17;S
 28.03.2019;;;;;;;;;Anfangssaldo;EUR;22.257,11;H
 04.04.2019;;;;;;;;;Endsaldo;EUR;21.488,94;H
   `,
-  'win1252',
-);
+  'win1252'
+)
 
 const ynabResult: YnabFile[] = [
   {
@@ -60,50 +60,50 @@ const ynabResult: YnabFile[] = [
       },
     ],
   },
-];
+]
 
 describe('Volksbank Parser Module', () => {
   describe('Matcher', () => {
     it('should match Volksbank files by file name', async () => {
-      const fileName = 'Umsaetze_DE84000099000008800049_2019.04.04.csv';
-      const result = !!fileName.match(volksbankEG.filenamePattern);
-      expect(result).toBe(true);
-    });
+      const fileName = 'Umsaetze_DE84000099000008800049_2019.04.04.csv'
+      const result = !!fileName.match(volksbankEG.filenamePattern)
+      expect(result).toBe(true)
+    })
 
     it('should not match other files by file name', async () => {
-      const invalidFile = new File([], 'test.csv');
-      const result = await volksbankEG.match(invalidFile);
-      expect(result).toBe(false);
-    });
+      const invalidFile = new File([], 'test.csv')
+      const result = await volksbankEG.match(invalidFile)
+      expect(result).toBe(false)
+    })
 
     it('should match Volksbank files by fields', async () => {
-      const file = new File([content], 'test.csv');
-      const result = await volksbankEG.match(file);
-      expect(result).toBe(true);
-    });
+      const file = new File([content], 'test.csv')
+      const result = await volksbankEG.match(file)
+      expect(result).toBe(true)
+    })
 
     it('should not match empty files', async () => {
-      const file = new File([], 'test.csv');
-      const result = await volksbankEG.match(file);
-      expect(result).toBe(false);
-    });
-  });
+      const file = new File([], 'test.csv')
+      const result = await volksbankEG.match(file)
+      expect(result).toBe(false)
+    })
+  })
 
   describe('Parser', () => {
     it('should parse data correctly', async () => {
-      const file = new File([content], 'test.csv');
-      const result = await volksbankEG.parse(file);
-      expect(result).toEqual(ynabResult);
-    });
-  });
+      const file = new File([content], 'test.csv')
+      const result = await volksbankEG.parse(file)
+      expect(result).toEqual(ynabResult)
+    })
+  })
 
   describe('Date Converter', () => {
     it('should format an input date correctly', () => {
-      expect(generateYnabDate('03.05.2018')).toEqual('05/03/2018');
-    });
+      expect(generateYnabDate('03.05.2018')).toEqual('05/03/2018')
+    })
 
     it('should throw an error when the input date is incorrect', () => {
-      expect(() => generateYnabDate('1.1.1')).toThrow('not a valid date');
-    });
-  });
-});
+      expect(() => generateYnabDate('1.1.1')).toThrow('not a valid date')
+    })
+  })
+})

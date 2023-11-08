@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React from 'react'
+import styled, { keyframes } from 'styled-components'
 
 const wave = keyframes`
   0%,
@@ -14,7 +14,7 @@ const wave = keyframes`
   80% {
     transform: rotate(10deg);
   }
-`;
+`
 
 const Badge = styled.svg`
   fill: #1a2a40;
@@ -31,7 +31,7 @@ const Badge = styled.svg`
   &:hover .octo-arm {
     animation: ${wave} 560ms ease-in-out;
   }
-`;
+`
 
 export const GitHubBadge: React.FC = () => (
   <a
@@ -55,4 +55,4 @@ export const GitHubBadge: React.FC = () => (
       />
     </Badge>
   </a>
-);
+)

@@ -1,56 +1,58 @@
-import 'mdn-polyfills/String.prototype.startsWith';
-import { ParserFunction, MatcherFunction, ParserModule } from '../..';
-import { parse } from '../../util/papaparse';
-import { readEncodedFile } from '../../util/read-encoded-file';
+import 'mdn-polyfills/String.prototype.startsWith'
+import { ParserFunction, MatcherFunction, ParserModule } from '../..'
+import { parse } from '../../util/papaparse'
+import { readEncodedFile } from '../../util/read-encoded-file'
 
 export interface Row {
-  Kontonummer: string;
-  'Datum/Zeit': string;
-  Buchungstag: string;
-  Wertstellung: string;
-  'Soll/Haben': string;
-  Buchungsschlüssel: string;
-  Buchungsart: string;
-  'Empfänger/Auftraggeber Name': string;
-  'Empfänger/Auftraggeber IBAN': string;
-  'Empfänger/Auftraggeber BIC': string;
-  'Glaeubiger-ID': string;
-  Mandatsreferenz: string;
-  Mandatsdatum: string;
-  'Vwz.0': string;
-  'Vwz.1': string;
-  'Vwz.2': string;
-  'Vwz.3': string;
-  'Vwz.4': string;
-  'Vwz.5': string;
-  'Vwz.6': string;
-  'Vwz.7': string;
-  'Vwz.8': string;
-  'Vwz.9': string;
-  'Vwz.10': string;
-  'Vwz.11': string;
-  'Vwz.12': string;
-  'Vwz.13': string;
-  'Vwz.14': string;
-  'Vwz.15': string;
-  'Vwz.16': string;
-  'Vwz.17': string;
-  'End-to-End-Identifikation': string;
+  Kontonummer: string
+  'Datum/Zeit': string
+  Buchungstag: string
+  Wertstellung: string
+  'Soll/Haben': string
+  Buchungsschlüssel: string
+  Buchungsart: string
+  'Empfänger/Auftraggeber Name': string
+  'Empfänger/Auftraggeber IBAN': string
+  'Empfänger/Auftraggeber BIC': string
+  'Glaeubiger-ID': string
+  Mandatsreferenz: string
+  Mandatsdatum: string
+  'Vwz.0': string
+  'Vwz.1': string
+  'Vwz.2': string
+  'Vwz.3': string
+  'Vwz.4': string
+  'Vwz.5': string
+  'Vwz.6': string
+  'Vwz.7': string
+  'Vwz.8': string
+  'Vwz.9': string
+  'Vwz.10': string
+  'Vwz.11': string
+  'Vwz.12': string
+  'Vwz.13': string
+  'Vwz.14': string
+  'Vwz.15': string
+  'Vwz.16': string
+  'Vwz.17': string
+  'End-to-End-Identifikation': string
 }
 
 export const generateYnabDate = (input: string) => {
-  const match = input.match(/(\d{2})\.(\d{2})\.(\d{4})/);
+  const match = input.match(/(\d{2})\.(\d{2})\.(\d{4})/)
 
   if (!match) {
-    throw new Error('The input is not a valid date. Expected format: YYYY-MM-DD');
+    throw new Error(
+      'The input is not a valid date. Expected format: YYYY-MM-DD'
+    )
   }
 
-  const [, day, month, year] = match;
-  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/');
-};
+  const [, day, month, year] = match
+  return [month.padStart(2, '0'), day.padStart(2, '0'), year].join('/')
+}
 
 export const parseNumber = (input: string) =>
-  Number(input.replace(/\./g, '').replace(',', '.'));
+  Number(input.replace(/\./g, '').replace(',', '.'))
 
 export const getMergedMemo = (r: Row) =>
   [
@@ -76,20 +78,20 @@ export const getMergedMemo = (r: Row) =>
     .filter(Boolean)
     // When the string is 35 characters long, it's likely to overflow into the next
     // field, so we don't add a space. Otherwise, we add a space for separation.
-    .map((s) => (s.length >= 35 ? s : s + ' '))
+    .map(s => (s.length >= 35 ? s : s + ' '))
     .join('')
-    .trim();
+    .trim()
 
 export const _1822direktParser: ParserFunction = async (file: File) => {
-  const fileString = await readEncodedFile(file, 'win1252');
-  const { data }: { data: Row[] } = await parse(fileString, { header: true });
+  const fileString = await readEncodedFile(file, 'win1252')
+  const { data }: { data: Row[] } = await parse(fileString, { header: true })
 
   return [
     {
       accountName: String(data[0]?.Kontonummer),
       data: (data as Row[])
-        .filter((r) => r.Buchungstag && r['Soll/Haben'])
-        .map((r) => ({
+        .filter(r => r.Buchungstag && r['Soll/Haben'])
+        .map(r => ({
           Date: generateYnabDate(r.Buchungstag),
           Payee: r['Empfänger/Auftraggeber Name'],
           Memo: getMergedMemo(r),
@@ -103,8 +105,8 @@ export const _1822direktParser: ParserFunction = async (file: File) => {
               : undefined,
         })),
     },
-  ];
-};
+  ]
+}
 
 export const _1822direktMatcher: MatcherFunction = async (file: File) => {
   const requiredKeys: (keyof Row)[] = [
@@ -112,41 +114,41 @@ export const _1822direktMatcher: MatcherFunction = async (file: File) => {
     'Soll/Haben',
     'Vwz.0',
     'Empfänger/Auftraggeber Name',
-  ];
+  ]
 
-  const rawFileString = await readEncodedFile(file, 'win1252');
+  const rawFileString = await readEncodedFile(file, 'win1252')
 
   if (
     rawFileString.startsWith(
-      'Kontonummer;Datum/Zeit;Buchungstag;Wertstellung;Soll/Haben;Buchungsschlüssel;Buchungsart;Empfänger/Auftraggeber Name;Empfänger/Auftraggeber IBAN;Empfänger/Auftraggeber BIC;Glaeubiger-ID;',
+      'Kontonummer;Datum/Zeit;Buchungstag;Wertstellung;Soll/Haben;Buchungsschlüssel;Buchungsart;Empfänger/Auftraggeber Name;Empfänger/Auftraggeber IBAN;Empfänger/Auftraggeber BIC;Glaeubiger-ID;'
     )
   ) {
-    return true;
+    return true
   }
 
   if (rawFileString.length === 0) {
-    return false;
+    return false
   }
 
   try {
-    const { data } = await parse(rawFileString, { header: true });
+    const { data } = await parse(rawFileString, { header: true })
 
     if (data.length === 0) {
-      return false;
+      return false
     }
 
-    const keys = Object.keys(data[0]);
-    const missingKeys = requiredKeys.filter((k) => !keys.includes(k));
+    const keys = Object.keys(data[0])
+    const missingKeys = requiredKeys.filter(k => !keys.includes(k))
 
     if (missingKeys.length === 0) {
-      return true;
+      return true
     }
   } catch (e) {
-    return false;
+    return false
   }
 
-  return false;
-};
+  return false
+}
 
 export const _1822direkt: ParserModule = {
   name: '1822direkt',
@@ -156,4 +158,4 @@ export const _1822direkt: ParserModule = {
   link: 'https://www.1822direkt.de/',
   match: _1822direktMatcher,
   parse: _1822direktParser,
-};
+}

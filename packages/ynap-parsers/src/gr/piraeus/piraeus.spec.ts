@@ -1,11 +1,11 @@
-import { generateYnabDate, piraeus } from './piraeus';
-import { YnabFile } from '../..';
-import fs from 'fs';
-import path from 'path';
+import { generateYnabDate, piraeus } from './piraeus'
+import { YnabFile } from '../..'
+import fs from 'fs'
+import path from 'path'
 
 const content = fs.readFileSync(
-  path.join(__dirname, 'test-data/Account.Transactions_20200725.xlsx'),
-);
+  path.join(__dirname, 'test-data/Account.Transactions_20200725.xlsx')
+)
 
 const ynabResult: YnabFile[] = [
   {
@@ -138,44 +138,44 @@ const ynabResult: YnabFile[] = [
       },
     ],
   },
-];
+]
 
 describe('Piraeus Bank Parser Module', () => {
   describe('Matcher', () => {
     it('should match Piraeus Bank files by file name', async () => {
-      const fileName = 'Account Transactions_20190601.xlsx';
-      const result = !!fileName.match(piraeus.filenamePattern);
-      expect(result).toBe(true);
-    });
+      const fileName = 'Account Transactions_20190601.xlsx'
+      const result = !!fileName.match(piraeus.filenamePattern)
+      expect(result).toBe(true)
+    })
 
     it('should not match other files by file name', async () => {
-      const invalidFile = new File([], 'test.xlsx');
-      const result = await piraeus.match(invalidFile);
-      expect(result).toBe(false);
-    });
+      const invalidFile = new File([], 'test.xlsx')
+      const result = await piraeus.match(invalidFile)
+      expect(result).toBe(false)
+    })
 
     it('should match Piraeus Bank files by fields', async () => {
-      const file = new File([content], 'test.xlsx');
-      const result = await piraeus.match(file);
-      expect(result).toBe(true);
-    });
-  });
+      const file = new File([content], 'test.xlsx')
+      const result = await piraeus.match(file)
+      expect(result).toBe(true)
+    })
+  })
 
   describe('Parser', () => {
     it('should parse data correctly', async () => {
-      const file = new File([content], 'test.xlsx');
-      const result = await piraeus.parse(file);
-      expect(result).toEqual(ynabResult);
-    });
-  });
+      const file = new File([content], 'test.xlsx')
+      const result = await piraeus.parse(file)
+      expect(result).toEqual(ynabResult)
+    })
+  })
 
   describe('Date Converter', () => {
     it('should format an input date correctly', () => {
-      expect(generateYnabDate('03/05/2018')).toEqual('05/03/2018');
-    });
+      expect(generateYnabDate('03/05/2018')).toEqual('05/03/2018')
+    })
 
     it('should throw an error when the input date is incorrect', () => {
-      expect(() => generateYnabDate('1.1.1')).toThrow('not a valid date');
-    });
-  });
-});
+      expect(() => generateYnabDate('1.1.1')).toThrow('not a valid date')
+    })
+  })
+})

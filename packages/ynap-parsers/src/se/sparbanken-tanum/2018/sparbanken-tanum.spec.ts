@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import { generateYnabDate, sparbankenTanum } from './sparbanken-tanum';
-import { YnabRow, YnabFile } from '../../..';
+import fs from 'fs'
+import path from 'path'
+import { generateYnabDate, sparbankenTanum } from './sparbanken-tanum'
+import { YnabRow, YnabFile } from '../../..'
 
-const content = fs.readFileSync(path.join(__dirname, 'test-data', 'export.csv'));
+const content = fs.readFileSync(path.join(__dirname, 'test-data', 'export.csv'))
 
 const ynabResult: YnabFile[] = [
   {
@@ -22,38 +22,38 @@ const ynabResult: YnabFile[] = [
       },
     ],
   },
-];
+]
 
 describe('Sparbanken Tanum Parser Module', () => {
   describe('Matcher', () => {
     it('should match Sparbanken Tanum files by fields', async () => {
-      const file = new File([content], 'test.csv');
-      const result = await sparbankenTanum.match(file);
-      expect(result).toBe(true);
-    });
+      const file = new File([content], 'test.csv')
+      const result = await sparbankenTanum.match(file)
+      expect(result).toBe(true)
+    })
 
     it('should not match empty files', async () => {
-      const file = new File([], 'test.csv');
-      const result = await sparbankenTanum.match(file);
-      expect(result).toBe(false);
-    });
-  });
+      const file = new File([], 'test.csv')
+      const result = await sparbankenTanum.match(file)
+      expect(result).toBe(false)
+    })
+  })
 
   describe('Parser', () => {
     it('should parse data correctly', async () => {
-      const file = new File([content], 'test.csv');
-      const result = await sparbankenTanum.parse(file);
-      expect(result).toEqual(ynabResult);
-    });
-  });
+      const file = new File([content], 'test.csv')
+      const result = await sparbankenTanum.parse(file)
+      expect(result).toEqual(ynabResult)
+    })
+  })
 
   describe('Date Converter', () => {
     it('should convert dates correctly', () => {
-      expect(generateYnabDate('2018-09-01')).toEqual('09/01/2018');
-    });
+      expect(generateYnabDate('2018-09-01')).toEqual('09/01/2018')
+    })
 
     it('should throw an error when the input date is incorrect', () => {
-      expect(() => generateYnabDate('1.1.1')).toThrow('not a valid date');
-    });
-  });
-});
+      expect(() => generateYnabDate('1.1.1')).toThrow('not a valid date')
+    })
+  })
+})
