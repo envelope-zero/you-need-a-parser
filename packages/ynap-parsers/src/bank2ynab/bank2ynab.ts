@@ -132,8 +132,8 @@ export const generateParser = (config: ParserConfig) => {
       return false
     }
 
-    // Get all rows after the header row, filter empty lines, then use the first row of that
-    const row = data.slice(config.headerRows).filter(d => d.length > 1)[0]
+    // Get all rows after the header row, filter empty lines, filter lines without a date (pending transactions), then use the first row of that
+    const row = data.slice(config.headerRows).filter(d => d.length > 1).filter(d => d[columns.Date] != "")[0]
 
     // Check that the date column is set correctly
     try {
@@ -169,8 +169,9 @@ export const generateParser = (config: ParserConfig) => {
     const { data } = await parseCsv(content.trim())
 
     const ynabData = data
-      .slice(config.headerRows, data.length - config.footerRows)
-      .filter(d => d.length > 1)
+      .slice(config.headerRows, data.length - config.footerRows) // Filter header and footer rows
+      .filter(d => d.length > 1) // Filter empty lines
+      .filter(d => d[columns.Date] != "") // Filter lines without date (pending transactions)
       .map(
         d =>
           ({
