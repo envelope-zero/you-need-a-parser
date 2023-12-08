@@ -39,6 +39,7 @@
   ],
   "customManagers": [
     {
+      "customType": "regex",
       "description": "SheetJS",
       "matchStrings": [
         "https://cdn.sheetjs.com/xlsx-(?<currentValue>.*)/xlsx-(.*)\\.tgz"
@@ -47,6 +48,17 @@
       "registryUrlTemplate": "https://git.sheetjs.com",
       "depNameTemplate": "sheetjs/sheetjs",
       "fileMatch": ["packages/ynap-parsers/package.json"]
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^packages/ynap-parsers/package.json$"],
+      "matchStrings": [
+        "ynap-bank2ynab-converter -b (?<currentDigest>.*?) -o src/bank2ynab/banks.json"
+      ],
+      "depNameTemplate": "bank2ynab",
+      "packageNameTemplate": "https://github.com/bank2ynab/bank2ynab",
+      "datasourceTemplate": "git-refs",
+      "currentValueTemplate": "develop"
     }
   ],
   "hostRules": [

@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.15.43",
+  "version": "1.15.44",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
   "author": "Envelope Zero Team <team@envelope-zero.org> (https://envelope-zero.org)",
@@ -37,6 +37,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "npx jest && tsc && cp -r ./lib/* . && rm -rf ./lib",
-    "fetch-bank2ynab": "ynap-bank2ynab-converter -b develop -o src/bank2ynab/banks.json"
+    "fetch-bank2ynab": "ynap-bank2ynab-converter -b cf153c196acd809a2e67638df9c8bc157345f567 -o src/bank2ynab/banks.json"
   }
 }
