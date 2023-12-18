@@ -1,6 +1,6 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.137",
+  "version": "1.15.138",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -20,7 +20,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-helmet": "6.1.0",
-    "react-helmet-async": "2.0.3",
+    "react-helmet-async": "2.0.4",
     "react-toastify": "9.1.3",
     "styled-components": "6.1.1",
     "ts-node": "10.9.2"
