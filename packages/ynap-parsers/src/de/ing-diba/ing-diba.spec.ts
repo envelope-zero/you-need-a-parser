@@ -1,6 +1,6 @@
-import { generateYnabDate, ingDiBa } from './ing-diba'
-import { YnabRow, YnabFile } from '../..'
 import { encode } from 'iconv-lite'
+import { YnabFile } from '../..'
+import { generateYnabDate, ingDiBa } from './ing-diba'
 
 const content = encode(
   `Umsatzanzeige;Datei erstellt am: 03.04.2019 22:16

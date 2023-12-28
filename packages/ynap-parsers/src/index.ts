@@ -1,31 +1,32 @@
-import { unparse } from 'papaparse'
 import 'mdn-polyfills/String.prototype.padStart'
+import { unparse } from 'papaparse'
 
-import uniq from 'lodash/uniq'
 import last from 'lodash/last'
+import uniq from 'lodash/uniq'
 
-import { outbank } from './de/outbank/outbank'
 import { _1822direkt } from './de/1822direkt/1822direkt'
-import { n26 } from './de/n26/n26'
-import { revolut } from './international/revolut/revolut'
-import { ingDiBa } from './de/ing-diba/ing-diba'
 import { comdirect } from './de/comdirect/comdirect'
+import { ingDiBa } from './de/ing-diba/ing-diba'
 import { kontist } from './de/kontist/kontist'
+import { n26 } from './de/n26/n26'
+import { outbank } from './de/outbank/outbank'
 import { volksbankEG } from './de/volksbank-eg/volksbank-eg'
+import { revolut } from './international/revolut/revolut'
 
 import { ingAustria } from './at/ing/ing-austria'
-import { bancomer } from './mx/bbva-bancomer/bbva-bancomer'
 import { piraeus } from './gr/piraeus/piraeus'
-import { marcus } from './uk/marcus/marcus'
+import { bancomer } from './mx/bbva-bancomer/bbva-bancomer'
 import { aqua } from './uk/aqua/aqua'
+import { marcus } from './uk/marcus/marcus'
 
 import { bank2ynab } from './bank2ynab/bank2ynab'
+import { mt940 } from './international/mt940/mt940'
 import { sparbankenTanum as sparbankenTanum2018 } from './se/sparbanken-tanum/2018/sparbanken-tanum'
 import { sparbankenTanum as sparbankenTanum2019 } from './se/sparbanken-tanum/2019/sparbanken-tanum'
-import { mt940 } from './international/mt940/mt940'
 
-import { mbank } from './pl/mbank/mbank'
+import { dkb } from './de/dkb/dkb'
 import { bankPocztowy } from './pl/bank-pocztowy/bank-pocztowy'
+import { mbank } from './pl/mbank/mbank'
 import { seb } from './se/seb-privat/seb'
 
 export interface YnabRow {
@@ -67,6 +68,7 @@ export const parsers: ParserModule[] = [
   kontist,
   volksbankEG,
   _1822direkt,
+  dkb,
 
   // GR
   piraeus,

@@ -1,9 +1,9 @@
+import { ParserConfig } from '@envelope-zero/ynap-bank2ynab-converter/parserconfig'
 import 'mdn-polyfills/String.prototype.startsWith'
-import { ParserFunction, MatcherFunction, ParserModule, YnabRow } from '..'
+import { MatcherFunction, ParserFunction, ParserModule, YnabRow } from '..'
 import { parse as parseCsv } from '../util/papaparse'
 import { readEncodedFile } from '../util/read-encoded-file'
 import { parseDate, ynabDate } from './parse-date'
-import { ParserConfig } from '@envelope-zero/ynap-bank2ynab-converter/parserconfig'
 
 import banks from './banks.json'
 
@@ -133,7 +133,10 @@ export const generateParser = (config: ParserConfig) => {
     }
 
     // Get all rows after the header row, filter empty lines, filter lines without a date (pending transactions), then use the first row of that
-    const row = data.slice(config.headerRows).filter(d => d.length > 1).filter(d => d[columns.Date] != "")[0]
+    const row = data
+      .slice(config.headerRows)
+      .filter(d => d.length > 1)
+      .filter(d => d[columns.Date] != '')[0]
 
     // Check that the date column is set correctly
     try {
@@ -171,7 +174,7 @@ export const generateParser = (config: ParserConfig) => {
     const ynabData = data
       .slice(config.headerRows, data.length - config.footerRows) // Filter header and footer rows
       .filter(d => d.length > 1) // Filter empty lines
-      .filter(d => d[columns.Date] != "") // Filter lines without date (pending transactions)
+      .filter(d => d[columns.Date] != '') // Filter lines without date (pending transactions)
       .map(
         d =>
           ({
@@ -230,7 +233,12 @@ export const generateParser = (config: ParserConfig) => {
   } as ParserModule
 }
 
-const ignorelist = ['de N26', 'de ING-DiBa', 'ie N26']
+const ignorelist = [
+  'de N26',
+  'de ING-DiBa',
+  'ie N26',
+  'de Deutsche Kreditbank checking new',
+]
 export const bank2ynab = banks
   .filter(b => !ignorelist.includes(`${b.country} ${b.name}`))
   .map(bank => generateParser(bank as ParserConfig))
