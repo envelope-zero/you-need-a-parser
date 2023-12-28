@@ -37,6 +37,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "npx jest && tsc && cp -r ./lib/* . && rm -rf ./lib",
-    "fetch-bank2ynab": "ynap-bank2ynab-converter --branch develop --exclude 'DE Deutsche Kreditbank checking new' --output src/bank2ynab/banks.json"
+    "fetch-bank2ynab": "ynap-bank2ynab-converter --branch develop --output src/bank2ynab/banks.json"
   }
 }

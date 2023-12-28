@@ -237,7 +237,7 @@ const ignorelist = [
   'de N26',
   'de ING-DiBa',
   'ie N26',
-  'Deutsche Kreditbank checking new',
+  'de Deutsche Kreditbank checking new',
 ]
 export const bank2ynab = banks
   .filter(b => !ignorelist.includes(`${b.country} ${b.name}`))
