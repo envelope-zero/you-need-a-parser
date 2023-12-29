@@ -60,7 +60,10 @@ export const DKBParser: ParserFunction = async (
         )
         .map(r => ({
           Date: generateYnabDate(r.Wertstellung),
-          Payee: r['Zahlungsempfänger*in'].replace(/\s+/g, ' ').trim(),
+          Payee:
+            parseNumber(r['Betrag (€)']) < 0
+              ? r['Zahlungsempfänger*in'].replace(/\s+/g, ' ').trim()
+              : r['Zahlungspflichtige*r'].replace(/\s+/g, ' ').trim(),
           Memo: r.Verwendungszweck.replace(/\s+/g, ' ').trim(),
           Outflow:
             parseNumber(r['Betrag (€)']) < 0

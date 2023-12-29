@@ -55,7 +55,7 @@ const ynabResults: Dictionary<YnabFile[]> = {
         },
         {
           Date: '09/28/2023',
-          Payee: 'Someone Else',
+          Payee: 'Someone',
           Memo: 'exampleNote',
           Outflow: undefined,
           Inflow: '2017.32',
@@ -78,7 +78,7 @@ const ynabResults: Dictionary<YnabFile[]> = {
           Inflow: '400.00',
           Memo: 'Beispiel Verwendungszweck',
           Outflow: undefined,
-          Payee: 'Erika Mustermann und Max Mustermann',
+          Payee: 'Beispielsender 1',
         },
         {
           Date: '12/27/2023',
@@ -99,7 +99,7 @@ const ynabResults: Dictionary<YnabFile[]> = {
           Inflow: '1230.00',
           Memo: 'Gemeinschaftskonto',
           Outflow: undefined,
-          Payee: 'MAX MUSTERMANN UND ERIKA MUSTERMANN',
+          Payee: 'Beispielsender 2',
         },
         {
           Date: '12/22/2023',
@@ -120,7 +120,7 @@ const ynabResults: Dictionary<YnabFile[]> = {
           Inflow: '200.00',
           Memo: '',
           Outflow: undefined,
-          Payee: 'Max Mustermann',
+          Payee: 'Beispielsender 1',
         },
         {
           Date: '12/20/2023',
@@ -134,7 +134,7 @@ const ynabResults: Dictionary<YnabFile[]> = {
           Inflow: '150.00',
           Memo: '',
           Outflow: undefined,
-          Payee: 'Max Mustermann und Erika Mustermann',
+          Payee: 'Beispielsender 2',
         },
         {
           Date: '12/19/2023',
@@ -176,7 +176,7 @@ const ynabResults: Dictionary<YnabFile[]> = {
           Inflow: '75.97',
           Memo: 'Beispiel Verwendungszweck',
           Outflow: undefined,
-          Payee: 'Max Mustermann',
+          Payee: 'Beispielsender 1',
         },
         {
           Date: '12/14/2023',
@@ -190,14 +190,14 @@ const ynabResults: Dictionary<YnabFile[]> = {
           Inflow: '12.00',
           Memo: 'Beispiel Verwendungszweck',
           Outflow: undefined,
-          Payee: 'Max Mustermann und Erika Mustermann',
+          Payee: 'Leon Mustermann',
         },
         {
           Date: '12/13/2023',
           Inflow: '12.00',
           Memo: 'Beispiel Verwendungszweck',
           Outflow: undefined,
-          Payee: 'Max Mustermann und Erika Mustermann',
+          Payee: 'Leon Mustermann',
         },
         {
           Date: '12/13/2023',
