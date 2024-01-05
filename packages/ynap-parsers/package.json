@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.16.1",
+  "version": "1.16.2",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
   "author": "Envelope Zero Team <team@envelope-zero.org> (https://envelope-zero.org)",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@envelope-zero/ynap-bank2ynab-converter": "1.14.39",
     "buffer": "6.0.3",
-    "date-fns": "3.0.6",
+    "date-fns": "3.1.0",
     "iban": "0.0.14",
     "iconv-lite": "0.6.3",
     "jschardet": "3.0.0",
