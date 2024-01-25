@@ -1,6 +1,6 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.173",
+  "version": "1.15.174",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -11,7 +11,7 @@
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
     "file-saver": "2.0.5",
-    "gatsby": "5.13.2",
+    "gatsby": "5.13.3",
     "gatsby-plugin-netlify": "5.1.1",
     "gatsby-plugin-offline": "6.13.1",
     "gatsby-plugin-react-helmet": "6.13.1",
