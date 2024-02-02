@@ -11,19 +11,17 @@ import { kontist } from './de/kontist/kontist'
 import { n26 } from './de/n26/n26'
 import { outbank } from './de/outbank/outbank'
 import { volksbankEG } from './de/volksbank-eg/volksbank-eg'
-import { revolut } from './international/revolut/revolut'
-
+import { tradeRepublic } from './de/trade-republic/trade-republic'
 import { ingAustria } from './at/ing/ing-austria'
 import { piraeus } from './gr/piraeus/piraeus'
 import { bancomer } from './mx/bbva-bancomer/bbva-bancomer'
 import { aqua } from './uk/aqua/aqua'
 import { marcus } from './uk/marcus/marcus'
-
-import { bank2ynab } from './bank2ynab/bank2ynab'
-import { mt940 } from './international/mt940/mt940'
 import { sparbankenTanum as sparbankenTanum2018 } from './se/sparbanken-tanum/2018/sparbanken-tanum'
 import { sparbankenTanum as sparbankenTanum2019 } from './se/sparbanken-tanum/2019/sparbanken-tanum'
-
+import { bank2ynab } from './bank2ynab/bank2ynab'
+import { mt940 } from './international/mt940/mt940'
+import { revolut } from './international/revolut/revolut'
 import { dkb } from './de/dkb/dkb'
 import { bankPocztowy } from './pl/bank-pocztowy/bank-pocztowy'
 import { mbank } from './pl/mbank/mbank'
@@ -69,6 +67,7 @@ export const parsers: ParserModule[] = [
   volksbankEG,
   _1822direkt,
   dkb,
+  tradeRepublic,
 
   // GR
   piraeus,
