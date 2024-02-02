@@ -26,7 +26,7 @@ export const generateYnabDate = (input: string) => {
 
 export const tradeRepublicParser: ParserFunction = async (file: File) => {
   const fileString = await readEncodedFile(file)
-  const data = await JSON.parse(fileString)['items']
+  const data = await JSON.parse(fileString)
 
   return [
     {
@@ -56,7 +56,7 @@ export const tradeRepublicMatcher: MatcherFunction = async (file: File) => {
 
   try {
     const data = await JSON.parse(rawFileString)
-    const first = data.items[0]
+    const first = data[0]
     if (generateYnabDate(first.timestamp) && first.eventType) {
       return true
     }
