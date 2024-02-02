@@ -3,27 +3,24 @@ import { YnabFile } from '../..'
 import { encode } from 'iconv-lite'
 
 const content = encode(
-  `{
-    "items": [
-      {
-        "id": "3af95aed-76a9-4142-9c9b-d4fb2598e013",
-        "timestamp": "2024-02-04T15:56:33.375+0000",
-        "title": "Zinsen",
-        "icon": "logos/timeline_interest_new/v2",
-        "badge": null,
-        "subtitle": null,
-        "amount": { "currency": "EUR", "value": 10, "fractionDigits": 2 },
-        "subAmount": null,
-        "status": "EXECUTED",
-        "action": {
-          "type": "timelineDetail",
-          "payload": "3af95aed-76a9-4142-9c9b-d4fb2598e013"
-        },
-        "eventType": "INTEREST_PAYOUT_CREATED"
-      }
-    ],
-    "cursors": { "after": "143dde86-1996-4017-ae80-bbdfdf6d79e8", "before": null }
-  }`,
+  `[
+    {
+      "id": "3af95aed-76a9-4142-9c9b-d4fb2598e013",
+      "timestamp": "2024-02-04T15:56:33.375+0000",
+      "title": "Zinsen",
+      "icon": "logos/timeline_interest_new/v2",
+      "badge": null,
+      "subtitle": null,
+      "amount": { "currency": "EUR", "value": 10, "fractionDigits": 2 },
+      "subAmount": null,
+      "status": "EXECUTED",
+      "action": {
+        "type": "timelineDetail",
+        "payload": "3af95aed-76a9-4142-9c9b-d4fb2598e013"
+      },
+      "eventType": "INTEREST_PAYOUT_CREATED"
+    }
+  ]`,
   'utf-8'
 )
 

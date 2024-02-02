@@ -1,69 +1,66 @@
-{
-  "items": [
-    {
-      "id": "3af95aed-76a9-4142-9c9b-d4fb2598e013",
-      "timestamp": "2024-02-04T15:56:33.375+0000",
-      "title": "Zinsen",
-      "icon": "logos/timeline_interest_new/v2",
-      "badge": null,
-      "subtitle": null,
-      "amount": { "currency": "EUR", "value": 10, "fractionDigits": 2 },
-      "subAmount": null,
-      "status": "EXECUTED",
-      "action": {
-        "type": "timelineDetail",
-        "payload": "3af95aed-76a9-4142-9c9b-d4fb2598e013"
-      },
-      "eventType": "INTEREST_PAYOUT_CREATED"
+[
+  {
+    "id": "3af95aed-76a9-4142-9c9b-d4fb2598e013",
+    "timestamp": "2024-02-04T15:56:33.375+0000",
+    "title": "Zinsen",
+    "icon": "logos/timeline_interest_new/v2",
+    "badge": null,
+    "subtitle": null,
+    "amount": { "currency": "EUR", "value": 10, "fractionDigits": 2 },
+    "subAmount": null,
+    "status": "EXECUTED",
+    "action": {
+      "type": "timelineDetail",
+      "payload": "3af95aed-76a9-4142-9c9b-d4fb2598e013"
     },
-    {
-      "id": "e2f5c297-79ab-4118-8a79-8ce7d53a4b41",
-      "timestamp": "2023-06-11T15:44:14.017+0000",
-      "title": "Einzahlung",
-      "icon": "logos/timeline_plus_circle/v2",
-      "badge": null,
-      "subtitle": null,
-      "amount": { "currency": "EUR", "value": 50.0, "fractionDigits": 2 },
-      "subAmount": null,
-      "status": "EXECUTED",
-      "action": {
-        "type": "timelineDetail",
-        "payload": "e2f5c297-79ab-4118-8a79-8ce7d53a4b41"
-      },
-      "eventType": "PAYMENT_INBOUND_SEPA_DIRECT_DEBIT"
+    "eventType": "INTEREST_PAYOUT_CREATED"
+  },
+  {
+    "id": "e2f5c297-79ab-4118-8a79-8ce7d53a4b41",
+    "timestamp": "2023-06-11T15:44:14.017+0000",
+    "title": "Einzahlung",
+    "icon": "logos/timeline_plus_circle/v2",
+    "badge": null,
+    "subtitle": null,
+    "amount": { "currency": "EUR", "value": 50.0, "fractionDigits": 2 },
+    "subAmount": null,
+    "status": "EXECUTED",
+    "action": {
+      "type": "timelineDetail",
+      "payload": "e2f5c297-79ab-4118-8a79-8ce7d53a4b41"
     },
-    {
-      "id": "5b17cc36-67ec-4e39-9c24-a26f653634d5",
-      "timestamp": "2017-10-17T08:11:08.217+0000",
-      "title": "Some Asset",
-      "icon": "logos/IDENTIFIER/v2",
-      "badge": null,
-      "subtitle": "Sparplan ausgef\u00fchrt",
-      "amount": { "currency": "EUR", "value": -70.0, "fractionDigits": 2 },
-      "subAmount": null,
-      "status": "EXECUTED",
-      "action": {
-        "type": "timelineDetail",
-        "payload": "5b17cc36-67ec-4e39-9c24-a26f653634d5"
-      },
-      "eventType": "SAVINGS_PLAN_EXECUTED"
+    "eventType": "PAYMENT_INBOUND_SEPA_DIRECT_DEBIT"
+  },
+  {
+    "id": "5b17cc36-67ec-4e39-9c24-a26f653634d5",
+    "timestamp": "2017-10-17T08:11:08.217+0000",
+    "title": "Some Asset",
+    "icon": "logos/IDENTIFIER/v2",
+    "badge": null,
+    "subtitle": "Sparplan ausgef\u00fchrt",
+    "amount": { "currency": "EUR", "value": -70.0, "fractionDigits": 2 },
+    "subAmount": null,
+    "status": "EXECUTED",
+    "action": {
+      "type": "timelineDetail",
+      "payload": "5b17cc36-67ec-4e39-9c24-a26f653634d5"
     },
-    {
-      "id": "7f28cf4a-435a-4fd4-9346-5215a196a9e5",
-      "timestamp": "2012-10-11T02:28:16.441+0000",
-      "title": "Some Asset",
-      "icon": "logos/IDENTIFIER/v2",
-      "badge": null,
-      "subtitle": "Vorabpauschale",
-      "amount": { "currency": "EUR", "value": -17.03, "fractionDigits": 2 },
-      "subAmount": null,
-      "status": "EXECUTED",
-      "action": {
-        "type": "timelineDetail",
-        "payload": "7f28cf4a-435a-4fd4-9346-5215a196a9e5"
-      },
-      "eventType": "PRE_DETERMINED_TAX_BASE"
-    }
-  ],
-  "cursors": { "after": "143dde86-1996-4017-ae80-bbdfdf6d79e8", "before": null }
-}
+    "eventType": "SAVINGS_PLAN_EXECUTED"
+  },
+  {
+    "id": "7f28cf4a-435a-4fd4-9346-5215a196a9e5",
+    "timestamp": "2012-10-11T02:28:16.441+0000",
+    "title": "Some Asset",
+    "icon": "logos/IDENTIFIER/v2",
+    "badge": null,
+    "subtitle": "Vorabpauschale",
+    "amount": { "currency": "EUR", "value": -17.03, "fractionDigits": 2 },
+    "subAmount": null,
+    "status": "EXECUTED",
+    "action": {
+      "type": "timelineDetail",
+      "payload": "7f28cf4a-435a-4fd4-9346-5215a196a9e5"
+    },
+    "eventType": "PRE_DETERMINED_TAX_BASE"
+  }
+]
