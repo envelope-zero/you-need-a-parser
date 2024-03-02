@@ -1,14 +1,11 @@
 {
   "name": "@envelope-zero/ynap-bank2ynab-converter",
-  "version": "1.14.83",
+  "version": "1.14.84",
   "license": "MIT",
   "author": {
-    "email": "admin+github@leolabs.org",
-    "name": "Leo Bernard",
-    "url": "https://leolabs.org"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "email": "team@envelope-zero.org",
+    "name": "Envelope Zero Team",
+    "url": "https://envelope-zero.org"
   },
   "bin": "index.js",
   "main": "index.js",

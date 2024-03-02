@@ -12,27 +12,24 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
 
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
-          node-version: '18.x'
-          registry-url: 'https://npm.pkg.github.com'
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
           cache: npm
           always-auth: true
           cache-dependency-path: package-lock.json
 
       - run: npm install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: publish bank2-ynab-converter
         run: |
           cd packages/ynap-bank2ynab-converter
           npm run build
-          npm publish
+          npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
