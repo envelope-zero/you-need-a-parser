@@ -1,13 +1,15 @@
 {
   "name": "@envelope-zero/ynap-bank2ynab-converter",
-  "version": "1.14.84",
+  "version": "1.14.85",
   "license": "MIT",
   "author": {
     "email": "team@envelope-zero.org",
     "name": "Envelope Zero Team",
     "url": "https://envelope-zero.org"
   },
-  "bin": "index.js",
+  "bin": {
+    "ynap-bank2ynab-converter": "index.js"
+  },
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
