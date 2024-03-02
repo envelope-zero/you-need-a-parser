@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.17.2",
+  "version": "1.17.3",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
   "author": {
@@ -11,7 +11,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@envelope-zero/ynap-bank2ynab-converter": "1.14.39",
+    "@envelope-zero/ynap-bank2ynab-converter": "1.14.85",
     "buffer": "6.0.3",
     "date-fns": "3.3.1",
     "iban": "0.0.14",
