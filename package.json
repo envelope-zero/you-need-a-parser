@@ -2,7 +2,7 @@
   "name": "you-need-a-parser",
   "private": true,
   "devDependencies": {
-    "typescript": "5.4.3"
+    "typescript": "5.4.4"
   },
   "workspaces": [
     "packages/*"
