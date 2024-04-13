@@ -1,6 +1,6 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.241",
+  "version": "1.15.242",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -8,7 +8,7 @@
     "@parcel/watcher": "2.4.1",
     "@types/jest": "29.5.12",
     "@types/node": "20.12.7",
-    "@types/react": "18.2.77",
+    "@types/react": "18.2.78",
     "@types/react-dom": "18.2.25",
     "file-saver": "2.0.5",
     "gatsby": "5.13.4",
