@@ -1,6 +1,6 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.243",
+  "version": "1.15.244",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -17,8 +17,8 @@
     "gatsby-plugin-react-helmet": "6.13.1",
     "gatsby-plugin-styled-components": "6.13.1",
     "gatsby-plugin-typescript": "5.13.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "18.3.0",
+    "react-dom": "18.3.0",
     "react-helmet": "6.1.0",
     "react-helmet-async": "2.0.4",
     "react-toastify": "10.0.5",
