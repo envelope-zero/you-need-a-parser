@@ -1,13 +1,13 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.264",
+  "version": "1.15.265",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@envelope-zero/ynap-parsers": "1.17.3",
     "@parcel/watcher": "2.4.1",
     "@types/jest": "29.5.12",
-    "@types/node": "20.14.2",
+    "@types/node": "20.14.3",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "file-saver": "2.0.5",
