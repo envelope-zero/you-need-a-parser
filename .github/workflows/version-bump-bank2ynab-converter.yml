@@ -33,7 +33,7 @@ jobs:
       - run: echo version=$(cat packages/ynap-bank2ynab-converter/package.json | jq -r .version) >> $GITHUB_OUTPUT
         id: new
 
-      - uses: madhead/semver-utils@e14d2d10c9dab6448b55cfe03bd475beac829062 # v4.0.0
+      - uses: madhead/semver-utils@d04f7d72d2145b5bdf5812b5599f7ec6c4dcf878 # v4.1.0
         id: comparison
         with:
           version: ${{ steps.new.outputs.version }}
