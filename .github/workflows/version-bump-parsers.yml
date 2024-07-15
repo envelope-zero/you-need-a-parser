@@ -33,7 +33,7 @@ jobs:
       - run: echo version=$(cat packages/ynap-parsers/package.json | jq -r .version) >> $GITHUB_OUTPUT
         id: new
 
-      - uses: madhead/semver-utils@ed58b1e544d13426a67fea39cb19638b3c5623d4 # v4.0.0
+      - uses: madhead/semver-utils@e14d2d10c9dab6448b55cfe03bd475beac829062 # v4.0.0
         id: comparison
         with:
           version: ${{ steps.new.outputs.version }}
