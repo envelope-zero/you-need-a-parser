@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.17.25",
+  "version": "1.17.26",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
   "author": {
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@types/iban": "0.0.35",
-    "@types/jest": "29.5.12",
+    "@types/jest": "29.5.13",
     "@types/lodash": "4.17.7",
     "@types/papaparse": "5.3.14",
     "glob": "10.3.10",
