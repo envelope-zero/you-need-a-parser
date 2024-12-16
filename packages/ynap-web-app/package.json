@@ -1,6 +1,6 @@
 {
   "name": "ynap-web-app",
-  "version": "1.15.331",
+  "version": "1.15.332",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -50,6 +50,6 @@
     "encoding": "0.1.13",
     "jest": "29.7.0",
     "node-fetch": "2.7.0",
-    "tslint": "5.20.1"
+    "tslint": "6.1.3"
   }
 }
