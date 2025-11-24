@@ -1,6 +1,6 @@
 {
   "name": "@envelope-zero/ynap-parsers",
-  "version": "1.17.34",
+  "version": "1.17.35",
   "description": "Parsers from various formats to YNAB CSV",
   "main": "index.js",
   "author": {
