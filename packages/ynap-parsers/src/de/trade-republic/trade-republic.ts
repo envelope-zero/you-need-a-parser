@@ -8,7 +8,7 @@ export interface TradeRepublicEntry {
   amount: {
     value: number
   }
-  eventType: string
+  subtitle: string
 }
 
 export const generateYnabDate = (input: string) => {
@@ -33,7 +33,7 @@ export const tradeRepublicParser: ParserFunction = async (file: File) => {
       data: (data as TradeRepublicEntry[])
         .filter(
           // German "Vorabpauschale" is deducted from the asset value directly
-          r => r.eventType != 'PRE_DETERMINED_TAX_BASE' && r.amount.value != 0
+          r => r.subtitle != 'Vorabpauschale' && r.amount.value != 0
         )
         .map(r => ({
           Date: generateYnabDate(r.timestamp),
@@ -42,10 +42,10 @@ export const tradeRepublicParser: ParserFunction = async (file: File) => {
 
           // Savings plans have the target asset as title, but we want it as a "Portfolio" account
           Payee:
-            r.eventType === 'SAVINGS_PLAN_EXECUTED'
+            r.subtitle === 'Sparplan ausgef\u00fchrt'
               ? 'Trade Republic Portfolio'
               : r.title,
-          Memo: r.eventType === 'SAVINGS_PLAN_EXECUTED' ? r.title : undefined,
+          Memo: r.subtitle === 'Sparplan ausgef\u00fchrt' ? r.title : undefined,
         })),
     },
   ]
@@ -57,7 +57,7 @@ export const tradeRepublicMatcher: MatcherFunction = async (file: File) => {
   try {
     const data = await JSON.parse(rawFileString)
     const first = data[0]
-    if (generateYnabDate(first.timestamp) && first.eventType) {
+    if (generateYnabDate(first.timestamp) && first.amount) {
       return true
     }
 
