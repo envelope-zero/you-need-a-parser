@@ -12,8 +12,7 @@
     "action": {
       "type": "timelineDetail",
       "payload": "3af95aed-76a9-4142-9c9b-d4fb2598e013"
-    },
-    "eventType": "INTEREST_PAYOUT_CREATED"
+    }
   },
   {
     "id": "e2f5c297-79ab-4118-8a79-8ce7d53a4b41",
@@ -28,8 +27,7 @@
     "action": {
       "type": "timelineDetail",
       "payload": "e2f5c297-79ab-4118-8a79-8ce7d53a4b41"
-    },
-    "eventType": "PAYMENT_INBOUND_SEPA_DIRECT_DEBIT"
+    }
   },
   {
     "id": "5b17cc36-67ec-4e39-9c24-a26f653634d5",
@@ -44,8 +42,7 @@
     "action": {
       "type": "timelineDetail",
       "payload": "5b17cc36-67ec-4e39-9c24-a26f653634d5"
-    },
-    "eventType": "SAVINGS_PLAN_EXECUTED"
+    }
   },
   {
     "id": "7f28cf4a-435a-4fd4-9346-5215a196a9e5",
@@ -60,7 +57,6 @@
     "action": {
       "type": "timelineDetail",
       "payload": "7f28cf4a-435a-4fd4-9346-5215a196a9e5"
-    },
-    "eventType": "PRE_DETERMINED_TAX_BASE"
+    }
   }
 ]

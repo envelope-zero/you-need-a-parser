@@ -6,7 +6,7 @@ ci:
   # We use renovate for this anyway
   autoupdate_schedule: quarterly
 
-default_stages: [commit]
+default_stages: [pre-commit]
 
 repos:
   - repo: https://github.com/pre-commit/mirrors-prettier
