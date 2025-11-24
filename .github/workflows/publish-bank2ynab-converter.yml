@@ -25,6 +25,9 @@ jobs:
           always-auth: true
           cache-dependency-path: package-lock.json
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - run: npm install
 
       - name: publish bank2-ynab-converter
