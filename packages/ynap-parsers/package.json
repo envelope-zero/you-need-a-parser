@@ -8,6 +8,7 @@
     "name": "Envelope Zero Team",
     "url": "https://envelope-zero.org"
   },
+  "repository": "github:envelope-zero/you-need-a-parser",
   "license": "MIT",
   "private": false,
   "dependencies": {
