@@ -1,0 +1,4 @@
+Bezeichnung Auftragskonto;IBAN Auftragskonto;BIC Auftragskonto;Bankname Auftragskonto;Buchungstag;Valutadatum;Name Zahlungsbeteiligter;IBAN Zahlungsbeteiligter;BIC (SWIFT-Code) Zahlungsbeteiligter;Buchungstext;Verwendungszweck;Betrag;Waehrung;Saldo nach Buchung;Bemerkung;Gekennzeichneter Umsatz;Glaeubiger ID;Mandatsreferenz
+GLS Tagesgeldkonto Mitglied;DE56430609671234567892;GENODEM1GLS;GLS Gemeinschaftsbank eG;27.02.2026;27.02.2026;Name Kontoinhaber*in;DE81430609670123456789;GENODEM1GLS;Überweisungsgutschr.;Steuerrückzahlung;3456,78;EUR;45678,90;;;;
+GLS Tagesgeldkonto Mitglied;DE56430609671234567892;GENODEM1GLS;GLS Gemeinschaftsbank eG;02.01.2026;02.01.2026;Name Kontoinhaber*in;DE81430609670123456789;GENODEM1GLS;Dauerauftragsgutschr;Sparbuch;678,90;EUR;34567,89;;;;
+GLS Tagesgeldkonto Mitglied;DE56430609671234567892;GENODEM1GLS;GLS Gemeinschaftsbank eG;30.12.2025;31.12.2025;;;;Abschluss;Abschluss per 31.12.2025;56,78;EUR;23456,78;;;;

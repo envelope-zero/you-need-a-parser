@@ -23,6 +23,7 @@ import { bank2ynab } from './bank2ynab/bank2ynab'
 import { mt940 } from './international/mt940/mt940'
 import { revolut } from './international/revolut/revolut'
 import { dkb } from './de/dkb/dkb'
+import { gls } from './de/gls/gls'
 import { bankPocztowy } from './pl/bank-pocztowy/bank-pocztowy'
 import { mbank } from './pl/mbank/mbank'
 import { seb } from './se/seb-privat/seb'
@@ -67,6 +68,7 @@ export const parsers: ParserModule[] = [
   volksbankEG,
   _1822direkt,
   dkb,
+  gls,
   tradeRepublic,
 
   // GR
