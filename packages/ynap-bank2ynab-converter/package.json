@@ -17,7 +17,7 @@
     "build": "tsc && cp -r ./lib/* . && rm -rf ./lib"
   },
   "devDependencies": {
-    "@types/node": "20.17.10",
+    "@types/node": "22.15.3",
     "@types/node-fetch": "2.6.12",
     "ts-node": "10.9.2"
   },
